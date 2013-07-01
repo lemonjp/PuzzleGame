@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Version</key>
+	<dict>
+		<key>major</key>
+		<string>1.0.0</string>
+	</dict>
+	<key>Gravity</key>
+	<string>{0.0,-10.0}</string>
+	<key>PTM_RATIO</key>
+	<string>32</string>
+</dict>
+</plist>
