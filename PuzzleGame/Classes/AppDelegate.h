@@ -11,7 +11,6 @@
 
 #include "CCApplication.h"
 
-//what is this
 /**
 @brief    The cocos2d Application.
 
