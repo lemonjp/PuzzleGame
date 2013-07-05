@@ -7,6 +7,6 @@
 	<key>PlayerFileName</key>
 	<string>Player.png</string>
 	<key>PlayerPosition</key>
-	<string>{100,100}</string>
+	<string>{150,100}</string>
 </dict>
 </plist>

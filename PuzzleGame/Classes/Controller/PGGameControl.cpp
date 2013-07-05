@@ -65,9 +65,6 @@ gameControl::initWithButton(){
     
 }
 
-
-
-
 void
 gameControl::postToNotificationCenter(){
     if(m_leftBtn->getIsSelect()) POST_MSG(moveLeft);

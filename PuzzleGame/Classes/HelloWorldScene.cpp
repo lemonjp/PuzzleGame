@@ -26,7 +26,7 @@ HelloWorld::HelloWorld()
     gameControl *control = gameControl::create();
     this->addChild(control,99);
     
-    PGPausePlugin::sharedPlugin()->createPlugin(this);
+    //PGPausePlugin::sharedPlugin()->createPlugin(this);
     
     CCSize size=CCDirector::sharedDirector()->getWinSize();
     CCSprite *bg=CCSprite::create("HelloWorld.png");

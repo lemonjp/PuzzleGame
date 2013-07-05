@@ -28,11 +28,13 @@ public:
 private:
     PlistLoader *plist;
     
-    CCArray *moveAnim;
-    CCArray *jumpAnim;
+    CCAnimate *moveAnim;
+    CCAnimate *jumpAnim;
+    CCAnimate *pushAnim;
     
-    void initWithMoveAnimation();
-    void initWithJumpAnimation();
+    void initWithMoveAnimation(CCTexture2D *playerTex);
+    void initWithJumpAnimation(CCTexture2D *playerTex);
+    void initWithPushAnimation(CCTexture2D *playerTex);
 };
 
 #endif /* defined(__PuzzleGame__PGPlayer__) */
