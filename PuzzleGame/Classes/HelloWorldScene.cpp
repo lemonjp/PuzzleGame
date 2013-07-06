@@ -19,36 +19,42 @@ using namespace CocosDenshion;
 
 HelloWorld::HelloWorld()
 {
+    SpriteBody *sprite=new SpriteBody();
+    sprite->initWithFile("Icon-72.png");
+    sprite->setPosition(ccp(100,100));
+    sprite->autorelease();
     
-    physics=new BasicPhysics();
-    this->initPhysics();
+    this->addChild(sprite);
     
-    gameControl *control = gameControl::create();
-    this->addChild(control,99);
+    BasicPhysics::sharedPhysics()->createBody(sprite,
+                                              sprite->getPosition() ,
+                                              b2_dynamicBody,
+                                              1.0f,0.5f,1.0f,
+                                              ccp(1.0f,1.0f));
+    sprite->applyFroce(b2Vec2(100,100), b2Vec2(sprite->getPosition().x/32,sprite->getPosition().y/32));
     
-    //PGPausePlugin::sharedPlugin()->createPlugin(this);
+    scheduleUpdate();
+//    gameControl *control = gameControl::create();
+//    this->addChild(control,99);
     
-    CCSize size=CCDirector::sharedDirector()->getWinSize();
-    CCSprite *bg=CCSprite::create("HelloWorld.png");
-    bg->setPosition(ccp(size.width/2, size.height/2));
-    this->addChild(bg);
+//    PGPausePlugin::sharedPlugin()->createPlugin(this);
     
-    PGPlayer::sharedPlayer()->createPlayer(this);
+//    CCSize size=CCDirector::sharedDirector()->getWinSize();
+//    CCSprite *bg=CCSprite::create("HelloWorld.png");
+//    bg->setPosition(ccp(size.width/2, size.height/2));
+//    this->addChild(bg);
+//    
+//    PGPlayer::sharedPlayer()->createPlayer(this);
 }
 
 HelloWorld::~HelloWorld()
 {
 }
 
-void HelloWorld::initPhysics()
-{
-    physics->initWithPhysics();
-}
-
 
 void HelloWorld::update(float dt)
 {
-    physics->update(dt);
+   BasicPhysics::sharedPhysics()->update(dt);
 }
 
 void HelloWorld::draw()

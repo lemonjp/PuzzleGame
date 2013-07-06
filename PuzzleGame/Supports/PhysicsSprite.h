@@ -43,6 +43,9 @@ public:
     SpriteBody();
     virtual bool isDirty(void);
     virtual CCAffineTransform nodeToParentTransform(void);
+    
+    //給刚体施加力
+    void applyFroce(b2Vec2 force,b2Vec2 point);
 private:
     CC_SYNTHESIZE(b2Body*, m_pBody, PhysicsBody);
 };

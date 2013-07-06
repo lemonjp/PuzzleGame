@@ -9,6 +9,10 @@
 	</dict>
 	<key>Gravity</key>
 	<string>{0.0,-10.0}</string>
+	<key>AllowSleeping</key>
+	<true/>
+	<key>ContinuousPhysics</key>
+	<true/>
 	<key>PTM_RATIO</key>
 	<string>32</string>
 </dict>

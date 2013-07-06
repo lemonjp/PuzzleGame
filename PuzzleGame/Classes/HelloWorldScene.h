@@ -40,7 +40,6 @@ public:
     CREATE_FUNC(HelloWorld);
     
 private:
-    BasicPhysics *physics;
     b2World* world;
     cocos2d::CCTexture2D* m_pSpriteTexture; // weak ref
 };

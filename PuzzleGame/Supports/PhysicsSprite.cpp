@@ -19,7 +19,7 @@ void BWContactListener::BeginContact(b2Contact* contact){
         mc.bodyA=contact->GetFixtureA()->GetBody();
         mc.bodyB=contact->GetFixtureB()->GetBody();
         
-        SpriteBody *spriteA=(SpriteBody*)mc.bodyA->GetUserData();
+        SpriteBody *snpriteA=(SpriteBody*)mc.bodyA->GetUserData();
         SpriteBody *spriteB=(SpriteBody*)mc.bodyB->GetUserData();
         
 //        if (spriteA!=NULL) {
@@ -69,9 +69,7 @@ void BWContactListener::EndContact(b2Contact* contact){
 
 SpriteBody::SpriteBody()
 : m_pBody(NULL)
-{
-    
-}
+{}
 
 
 bool SpriteBody::isDirty(void)
@@ -107,4 +105,8 @@ CCAffineTransform SpriteBody::nodeToParentTransform(void)
                                          x,  y );
     
     return m_tTransform;
+}
+
+void SpriteBody::applyFroce(b2Vec2 force, b2Vec2 point){
+    m_pBody->ApplyForce(force, point);
 }
