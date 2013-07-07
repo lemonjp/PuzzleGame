@@ -35,6 +35,17 @@ void PGPlayer::createPlayer(CCLayer* layer){
     this->initWithMoveAnimation(playerTex);
     this->initWithPushAnimation(playerTex);
     
+    //添加玩家刚体
+    this->addPlayerBodyToScreen(layer, playerTex);
+}
+
+void PGPlayer::deletePlayer(CCLayer* layer){
+    CCString *file=dynamic_cast<CCString*>(plist->getObjectFromFileKey("PlayerFileName"));
+    //删除纹理
+    CCTextureCache::sharedTextureCache()->removeTextureForKey(file->getCString());
+}
+
+void PGPlayer::addPlayerBodyToScreen(CCLayer* layer,CCTexture2D *playerTex){
     //添加玩家精灵
     CCString *imageSizeStr=dynamic_cast<CCString*>(plist->getObjectFromFileKey("ImagePreSize"));
     CCSize imageSize=CCSizeFromString(imageSizeStr->getCString());
@@ -42,17 +53,25 @@ void PGPlayer::createPlayer(CCLayer* layer){
     CCPoint position=CCPointFromString(positionStr->getCString());
     
     CCSpriteFrame *frame1=CCSpriteFrame::createWithTexture(playerTex, CCRectMake(0, 0, imageSize.width, imageSize.height));
-    CCSprite *sprite=CCSprite::createWithSpriteFrame(frame1);
+    SpriteBody *sprite=new SpriteBody();
+    
+    sprite->initWithSpriteFrame(frame1);
     sprite->setPosition(position);
     sprite->setScale(0.45f);
-    layer->addChild(sprite);
-    sprite->runAction(CCRepeatForever::create(pushAnim));
-}
+    sprite->autorelease();
+    
+    CCString *playerTag=dynamic_cast<CCString*>(plist->getObjectFromFileKey("PlayerTag"));
+    CCString *playerZOrder=dynamic_cast<CCString*>(plist->getObjectFromFileKey("PlayerZOrder"));
 
-void PGPlayer::deletePlayer(CCLayer* layer){
-    CCString *file=dynamic_cast<CCString*>(plist->getObjectFromFileKey("PlayerFileName"));
-    //删除纹理
-    CCTextureCache::sharedTextureCache()->removeTextureForKey(file->getCString());
+    layer->addChild(sprite,playerZOrder->intValue(),playerTag->intValue());
+    //运行player动画
+    sprite->runAction(CCRepeatForever::create(moveAnim));
+    
+    BasicPhysics::sharedPhysics()->createBody(sprite,
+                                              sprite->getPosition() ,
+                                              b2_dynamicBody,
+                                              0.8f,0.5f,0.0f,
+                                              ccp(3.0f,3.0f));
 }
 
 void PGPlayer::initWithMoveAnimation(CCTexture2D *playerTex){

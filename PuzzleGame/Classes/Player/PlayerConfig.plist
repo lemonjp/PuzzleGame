@@ -8,5 +8,9 @@
 	<string>Player.png</string>
 	<key>PlayerPosition</key>
 	<string>{150,100}</string>
+	<key>PlayerTag</key>
+	<string>100</string>
+	<key>PlayerZOrder</key>
+	<string>99</string>
 </dict>
 </plist>

@@ -16,7 +16,6 @@ BasicPhysics* BasicPhysics::sharedPhysics(){
     if (!gamePhysics) {
         gamePhysics=new BasicPhysics();
         gamePhysics->initWithPhysics();
-        
     }
     return gamePhysics;
 }
@@ -56,23 +55,6 @@ void BasicPhysics::initWithPhysics(){
     this->crateEdgeShape(groundBody, groundBox);
 }
 
-void BasicPhysics::crateEdgeShape(b2Body *groundBody, b2EdgeShape groundBox){
-    CCSize s=CCDirector::sharedDirector()->getWinSize();
-    //产生四边的碰撞墙壁
-    //底部
-    groundBox.Set(b2Vec2(0,0),b2Vec2(s.width/PTM_RATIO,0));
-    groundBody->CreateFixture(&groundBox,0);
-    //顶部
-    groundBox.Set(b2Vec2(0,s.height/PTM_RATIO), b2Vec2(s.width/PTM_RATIO,s.height/PTM_RATIO));
-    groundBody->CreateFixture(&groundBox,0);
-    //左边
-    groundBox.Set(b2Vec2(0,s.height/PTM_RATIO), b2Vec2(0,0));
-    groundBody->CreateFixture(&groundBox,0);
-    //右边
-    groundBox.Set(b2Vec2(s.width/PTM_RATIO,s.height/PTM_RATIO), b2Vec2(s.width/PTM_RATIO,0));
-    groundBody->CreateFixture(&groundBox,0);
-}
-
 void BasicPhysics::update(float dt){
     //It is recommended that a fixed time step is used with Box2D for stability
     //of the simulation, however, we are using a variable time step here.
@@ -96,6 +78,23 @@ void BasicPhysics::update(float dt){
             myActor->setRotation( -1 * CC_RADIANS_TO_DEGREES(b->GetAngle()) );
         }
     }
+}
+
+void BasicPhysics::crateEdgeShape(b2Body *groundBody, b2EdgeShape groundBox){
+    CCSize s=CCDirector::sharedDirector()->getWinSize();
+    //产生四边的碰撞墙壁
+    //底部
+    groundBox.Set(b2Vec2(0,0),b2Vec2(s.width/PTM_RATIO,0));
+    groundBody->CreateFixture(&groundBox,0);
+    //顶部
+    groundBox.Set(b2Vec2(0,s.height/PTM_RATIO), b2Vec2(s.width/PTM_RATIO,s.height/PTM_RATIO));
+    groundBody->CreateFixture(&groundBox,0);
+    //左边
+    groundBox.Set(b2Vec2(0,s.height/PTM_RATIO), b2Vec2(0,0));
+    groundBody->CreateFixture(&groundBox,0);
+    //右边
+    groundBox.Set(b2Vec2(s.width/PTM_RATIO,s.height/PTM_RATIO), b2Vec2(s.width/PTM_RATIO,0));
+    groundBody->CreateFixture(&groundBox,0);
 }
 
 void BasicPhysics::createBody(SpriteBody *sprite,

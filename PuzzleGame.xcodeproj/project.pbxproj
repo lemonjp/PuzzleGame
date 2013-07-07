@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CE07BC89177BDEAB00D9657D /* pauseBg.png in Resources */ = {isa = PBXBuildFile; fileRef = CE07BC87177BDEAB00D9657D /* pauseBg.png */; };
 		CE07BC8A177BDEAB00D9657D /* PauseBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = CE07BC88177BDEAB00D9657D /* PauseBtn.png */; };
+		CE11605017882A750029B947 /* DemoLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE11604E17882A6F0029B947 /* DemoLayer.cpp */; };
 		CE2E1D21177DCD9B00696F60 /* PGBtnItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE2E1D1D177DCD9A00696F60 /* PGBtnItem.cpp */; };
 		CE2E1D22177DCD9B00696F60 /* PGGameControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE2E1D1F177DCD9B00696F60 /* PGGameControl.cpp */; };
 		CE2E1D25177DCDB600696F60 /* 跳跃.png in Resources */ = {isa = PBXBuildFile; fileRef = CE2E1D23177DCDB600696F60 /* 跳跃.png */; };
@@ -19,6 +20,10 @@
 		CE932A4C177FDD1F00EE0695 /* Player.png in Resources */ = {isa = PBXBuildFile; fileRef = CE932A4B177FDD1F00EE0695 /* Player.png */; };
 		CE932A4F177FDFAC00EE0695 /* PGPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE932A4D177FDFAC00EE0695 /* PGPlayer.cpp */; };
 		CE932A51177FEB7100EE0695 /* PlayerConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE932A50177FEB7100EE0695 /* PlayerConfig.plist */; };
+		CE9DFB65178834FC007744E4 /* background1.png in Resources */ = {isa = PBXBuildFile; fileRef = CE9DFB64178834FC007744E4 /* background1.png */; };
+		CEAB70E31789224C00847B1B /* MenuButtons.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEAB70E11789224C00847B1B /* MenuButtons.cpp */; };
+		CEAB70E51789268C00847B1B /* buttons.png in Resources */ = {isa = PBXBuildFile; fileRef = CEAB70E41789268C00847B1B /* buttons.png */; };
+		CEAB70E7178927D900847B1B /* MenuButtonConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEAB70E6178927D900847B1B /* MenuButtonConfig.plist */; };
 		CEBC3B8E1771DB7100EACBCA /* PlistLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEBC3B8C1771DB7100EACBCA /* PlistLoader.cpp */; };
 		CEBC3B941771DC0C00EACBCA /* BasicPhysics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEBC3B921771DC0C00EACBCA /* BasicPhysics.cpp */; };
 		CEBC3B961771DDA200EACBCA /* PhysicsWorldPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEBC3B951771DDA200EACBCA /* PhysicsWorldPlist.plist */; };
@@ -266,13 +271,13 @@
 		CEECC0661771CBF3005E6913 /* b2WheelJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEECC0651771CBF3005E6913 /* b2WheelJoint.cpp */; };
 		CEECC06A1771CBF3005E6913 /* b2Rope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEECC0691771CBF3005E6913 /* b2Rope.cpp */; };
 		CEECC0711771CBF3005E6913 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEECC0701771CBF3005E6913 /* AppDelegate.cpp */; };
-		CEECC0741771CBF3005E6913 /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEECC0731771CBF3005E6913 /* HelloWorldScene.cpp */; };
-		CEECC0761771CBF3005E6913 /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = CEECC0751771CBF3005E6913 /* blocks.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CE07BC87177BDEAB00D9657D /* pauseBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pauseBg.png; path = Classes/PausePlugin/pauseBg.png; sourceTree = "<group>"; };
 		CE07BC88177BDEAB00D9657D /* PauseBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PauseBtn.png; path = Classes/PausePlugin/PauseBtn.png; sourceTree = "<group>"; };
+		CE11604E17882A6F0029B947 /* DemoLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DemoLayer.cpp; path = Classes/DemoLayer.cpp; sourceTree = "<group>"; };
+		CE11604F17882A710029B947 /* DemoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DemoLayer.h; path = Classes/DemoLayer.h; sourceTree = "<group>"; };
 		CE2E1D1D177DCD9A00696F60 /* PGBtnItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PGBtnItem.cpp; path = Classes/Controller/PGBtnItem.cpp; sourceTree = "<group>"; };
 		CE2E1D1E177DCD9A00696F60 /* PGBtnItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PGBtnItem.h; path = Classes/Controller/PGBtnItem.h; sourceTree = "<group>"; };
 		CE2E1D1F177DCD9B00696F60 /* PGGameControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PGGameControl.cpp; path = Classes/Controller/PGGameControl.cpp; sourceTree = "<group>"; };
@@ -288,6 +293,11 @@
 		CE932A4D177FDFAC00EE0695 /* PGPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PGPlayer.cpp; path = Classes/Player/PGPlayer.cpp; sourceTree = "<group>"; };
 		CE932A4E177FDFAC00EE0695 /* PGPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PGPlayer.h; path = Classes/Player/PGPlayer.h; sourceTree = "<group>"; };
 		CE932A50177FEB7100EE0695 /* PlayerConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PlayerConfig.plist; path = Classes/Player/PlayerConfig.plist; sourceTree = "<group>"; };
+		CE9DFB64178834FC007744E4 /* background1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background1.png; path = Resources/GameResources/background1.png; sourceTree = "<group>"; };
+		CEAB70E11789224C00847B1B /* MenuButtons.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MenuButtons.cpp; path = Supports/MenuButtons/MenuButtons.cpp; sourceTree = "<group>"; };
+		CEAB70E21789224C00847B1B /* MenuButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuButtons.h; path = Supports/MenuButtons/MenuButtons.h; sourceTree = "<group>"; };
+		CEAB70E41789268C00847B1B /* buttons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = buttons.png; path = Supports/MenuButtons/buttons.png; sourceTree = "<group>"; };
+		CEAB70E6178927D900847B1B /* MenuButtonConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = MenuButtonConfig.plist; path = Supports/MenuButtons/MenuButtonConfig.plist; sourceTree = "<group>"; };
 		CEBC3B8C1771DB7100EACBCA /* PlistLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlistLoader.cpp; path = Supports/PlistLoader.cpp; sourceTree = "<group>"; };
 		CEBC3B8D1771DB7100EACBCA /* PlistLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlistLoader.h; path = Supports/PlistLoader.h; sourceTree = "<group>"; };
 		CEBC3B921771DC0C00EACBCA /* BasicPhysics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BasicPhysics.cpp; path = Supports/BasicPhysics.cpp; sourceTree = "<group>"; };
@@ -822,9 +832,6 @@
 		CEECC06D1771CBF3005E6913 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		CEECC06F1771CBF3005E6913 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		CEECC0701771CBF3005E6913 /* AppDelegate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = Classes/AppDelegate.cpp; sourceTree = "<group>"; };
-		CEECC0721771CBF3005E6913 /* HelloWorldScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HelloWorldScene.h; path = Classes/HelloWorldScene.h; sourceTree = "<group>"; };
-		CEECC0731771CBF3005E6913 /* HelloWorldScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HelloWorldScene.cpp; path = Classes/HelloWorldScene.cpp; sourceTree = "<group>"; };
-		CEECC0751771CBF3005E6913 /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -894,6 +901,8 @@
 		CEECBD421771CBEE005E6913 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CEAB70E41789268C00847B1B /* buttons.png */,
+				CE9DFB64178834FC007744E4 /* background1.png */,
 				CE932A4B177FDD1F00EE0695 /* Player.png */,
 				CE2E1D23177DCDB600696F60 /* 跳跃.png */,
 				CE2E1D24177DCDB600696F60 /* 跳跃2.png */,
@@ -911,7 +920,6 @@
 				CEECBD551771CBEE005E6913 /* Icon@2x.png */,
 				CEECBD571771CBEE005E6913 /* iTunesArtwork */,
 				CEECBD591771CBEE005E6913 /* Info.plist */,
-				CEECC0751771CBF3005E6913 /* blocks.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1888,8 +1896,8 @@
 			children = (
 				CEECC06F1771CBF3005E6913 /* AppDelegate.h */,
 				CEECC0701771CBF3005E6913 /* AppDelegate.cpp */,
-				CEECC0721771CBF3005E6913 /* HelloWorldScene.h */,
-				CEECC0731771CBF3005E6913 /* HelloWorldScene.cpp */,
+				CE11604F17882A710029B947 /* DemoLayer.h */,
+				CE11604E17882A6F0029B947 /* DemoLayer.cpp */,
 				CEF844FD177DCEEF000A8056 /* GamePlugin */,
 				CEECC07D1771CF41005E6913 /* Supports */,
 			);
@@ -1906,6 +1914,9 @@
 				CE417F2E17729145001B7C4D /* PhysicsSprite.cpp */,
 				CEBC3B8D1771DB7100EACBCA /* PlistLoader.h */,
 				CEBC3B8C1771DB7100EACBCA /* PlistLoader.cpp */,
+				CEAB70E21789224C00847B1B /* MenuButtons.h */,
+				CEAB70E11789224C00847B1B /* MenuButtons.cpp */,
+				CEAB70E6178927D900847B1B /* MenuButtonConfig.plist */,
 			);
 			name = Supports;
 			sourceTree = "<group>";
@@ -2005,7 +2016,6 @@
 				CEECBD561771CBEE005E6913 /* Icon@2x.png in Resources */,
 				CEECBD581771CBEE005E6913 /* iTunesArtwork in Resources */,
 				CEECBDEA1771CBEF005E6913 /* ChangeLog in Resources */,
-				CEECC0761771CBF3005E6913 /* blocks.png in Resources */,
 				CEBC3B961771DDA200EACBCA /* PhysicsWorldPlist.plist in Resources */,
 				CE8B2D65177443CC00DD878A /* PGPausePluginConfig.plist in Resources */,
 				CE07BC89177BDEAB00D9657D /* pauseBg.png in Resources */,
@@ -2014,6 +2024,9 @@
 				CE2E1D26177DCDB600696F60 /* 跳跃2.png in Resources */,
 				CE932A4C177FDD1F00EE0695 /* Player.png in Resources */,
 				CE932A51177FEB7100EE0695 /* PlayerConfig.plist in Resources */,
+				CE9DFB65178834FC007744E4 /* background1.png in Resources */,
+				CEAB70E51789268C00847B1B /* buttons.png in Resources */,
+				CEAB70E7178927D900847B1B /* MenuButtonConfig.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2247,7 +2260,6 @@
 				CEECC0661771CBF3005E6913 /* b2WheelJoint.cpp in Sources */,
 				CEECC06A1771CBF3005E6913 /* b2Rope.cpp in Sources */,
 				CEECC0711771CBF3005E6913 /* AppDelegate.cpp in Sources */,
-				CEECC0741771CBF3005E6913 /* HelloWorldScene.cpp in Sources */,
 				CEBC3B8E1771DB7100EACBCA /* PlistLoader.cpp in Sources */,
 				CEBC3B941771DC0C00EACBCA /* BasicPhysics.cpp in Sources */,
 				CE417F3017729145001B7C4D /* PhysicsSprite.cpp in Sources */,
@@ -2255,6 +2267,8 @@
 				CE2E1D21177DCD9B00696F60 /* PGBtnItem.cpp in Sources */,
 				CE2E1D22177DCD9B00696F60 /* PGGameControl.cpp in Sources */,
 				CE932A4F177FDFAC00EE0695 /* PGPlayer.cpp in Sources */,
+				CE11605017882A750029B947 /* DemoLayer.cpp in Sources */,
+				CEAB70E31789224C00847B1B /* MenuButtons.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

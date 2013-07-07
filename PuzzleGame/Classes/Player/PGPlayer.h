@@ -11,6 +11,8 @@
 
 #include "cocos2d.h"
 #include "PlistLoader.h"
+#include "BasicPhysics.h"
+#include "PhysicsSprite.h"
 
 using namespace cocos2d;
 
@@ -35,6 +37,8 @@ private:
     void initWithMoveAnimation(CCTexture2D *playerTex);
     void initWithJumpAnimation(CCTexture2D *playerTex);
     void initWithPushAnimation(CCTexture2D *playerTex);
+    
+    void addPlayerBodyToScreen(CCLayer* layer,CCTexture2D *playerTex);
 };
 
 #endif /* defined(__PuzzleGame__PGPlayer__) */
