@@ -33,6 +33,7 @@ void PGPlayer::createPlayer(CCLayer* layer){
     CCTexture2D *playerTex=CCTextureCache::sharedTextureCache()->addImage(file->getCString());
     //初始化动画
     this->initWithMoveAnimation(playerTex);
+    this->initWithJumpAnimation(playerTex);
     this->initWithPushAnimation(playerTex);
     
     //添加玩家刚体
@@ -65,13 +66,28 @@ void PGPlayer::addPlayerBodyToScreen(CCLayer* layer,CCTexture2D *playerTex){
 
     layer->addChild(sprite,playerZOrder->intValue(),playerTag->intValue());
     //运行player动画
-    sprite->runAction(CCRepeatForever::create(moveAnim));
+    this->playMoveAnim(sprite);
     
     BasicPhysics::sharedPhysics()->createBody(sprite,
                                               sprite->getPosition() ,
                                               b2_dynamicBody,
                                               0.8f,0.5f,0.0f,
                                               ccp(3.0f,3.0f));
+}
+
+void PGPlayer::playMoveAnim(CCSprite* sprite){
+    sprite->stopAllActions();
+    sprite->runAction(CCRepeatForever::create(moveAnim));
+}
+
+void PGPlayer::playJumpAnim(CCSprite* sprite){
+    sprite->stopAllActions();
+    sprite->runAction(CCRepeatForever::create(jumpAnim));
+}
+
+void PGPlayer::playPushAnim(CCSprite* sprite){
+    sprite->stopAllActions();
+    sprite->runAction(CCRepeatForever::create(pushAnim));
 }
 
 void PGPlayer::initWithMoveAnimation(CCTexture2D *playerTex){
@@ -91,7 +107,19 @@ void PGPlayer::initWithMoveAnimation(CCTexture2D *playerTex){
 }
 
 void PGPlayer::initWithJumpAnimation(CCTexture2D *playerTex){
-    
+    CCString *imageSizeStr=dynamic_cast<CCString*>(plist->getObjectFromFileKey("ImagePreSize"));
+    CCSize imageSize=CCSizeFromString(imageSizeStr->getCString());
+    //创建跳跃动画
+    CCArray *animFrames=CCArray::create();
+    for (int i=0; i<4; i++) {
+        CCSpriteFrame *frame=CCSpriteFrame::createWithTexture(playerTex,CCRectMake(imageSize.width*i, imageSize.height*2,imageSize.width, imageSize.height));
+        animFrames->addObject(frame);
+    }
+    //用侦序列创建动画
+    CCAnimation *animation=CCAnimation::createWithSpriteFrames(animFrames);
+    //创建Animate播放动画
+    animation->setDelayPerUnit(0.3f);
+    jumpAnim=CCAnimate::create(animation);
 }
 
 void PGPlayer::initWithPushAnimation(CCTexture2D *playerTex){

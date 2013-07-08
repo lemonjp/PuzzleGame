@@ -15,9 +15,9 @@
 		CE2E1D25177DCDB600696F60 /* 跳跃.png in Resources */ = {isa = PBXBuildFile; fileRef = CE2E1D23177DCDB600696F60 /* 跳跃.png */; };
 		CE2E1D26177DCDB600696F60 /* 跳跃2.png in Resources */ = {isa = PBXBuildFile; fileRef = CE2E1D24177DCDB600696F60 /* 跳跃2.png */; };
 		CE417F3017729145001B7C4D /* PhysicsSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE417F2E17729145001B7C4D /* PhysicsSprite.cpp */; };
+		CE562F5E178AC1F20081390F /* player.png in Resources */ = {isa = PBXBuildFile; fileRef = CE562F5D178AC1F20081390F /* player.png */; };
 		CE8B2D63177442FD00DD878A /* PGPausePlugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE8B2D61177442FC00DD878A /* PGPausePlugin.cpp */; };
 		CE8B2D65177443CC00DD878A /* PGPausePluginConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE8B2D64177443CC00DD878A /* PGPausePluginConfig.plist */; };
-		CE932A4C177FDD1F00EE0695 /* Player.png in Resources */ = {isa = PBXBuildFile; fileRef = CE932A4B177FDD1F00EE0695 /* Player.png */; };
 		CE932A4F177FDFAC00EE0695 /* PGPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE932A4D177FDFAC00EE0695 /* PGPlayer.cpp */; };
 		CE932A51177FEB7100EE0695 /* PlayerConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE932A50177FEB7100EE0695 /* PlayerConfig.plist */; };
 		CE9DFB65178834FC007744E4 /* background1.png in Resources */ = {isa = PBXBuildFile; fileRef = CE9DFB64178834FC007744E4 /* background1.png */; };
@@ -286,10 +286,10 @@
 		CE2E1D24177DCDB600696F60 /* 跳跃2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "跳跃2.png"; path = "Classes/Controller/跳跃2.png"; sourceTree = "<group>"; };
 		CE417F2E17729145001B7C4D /* PhysicsSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PhysicsSprite.cpp; path = Supports/PhysicsSprite.cpp; sourceTree = "<group>"; };
 		CE417F2F17729145001B7C4D /* PhysicsSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhysicsSprite.h; path = Supports/PhysicsSprite.h; sourceTree = "<group>"; };
+		CE562F5D178AC1F20081390F /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player.png; sourceTree = "<group>"; };
 		CE8B2D61177442FC00DD878A /* PGPausePlugin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PGPausePlugin.cpp; path = Classes/PausePlugin/PGPausePlugin.cpp; sourceTree = "<group>"; };
 		CE8B2D62177442FC00DD878A /* PGPausePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PGPausePlugin.h; path = Classes/PausePlugin/PGPausePlugin.h; sourceTree = "<group>"; };
 		CE8B2D64177443CC00DD878A /* PGPausePluginConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PGPausePluginConfig.plist; path = Classes/PausePlugin/PGPausePluginConfig.plist; sourceTree = "<group>"; };
-		CE932A4B177FDD1F00EE0695 /* Player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Player.png; path = Classes/Player/Player.png; sourceTree = "<group>"; };
 		CE932A4D177FDFAC00EE0695 /* PGPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PGPlayer.cpp; path = Classes/Player/PGPlayer.cpp; sourceTree = "<group>"; };
 		CE932A4E177FDFAC00EE0695 /* PGPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PGPlayer.h; path = Classes/Player/PGPlayer.h; sourceTree = "<group>"; };
 		CE932A50177FEB7100EE0695 /* PlayerConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PlayerConfig.plist; path = Classes/Player/PlayerConfig.plist; sourceTree = "<group>"; };
@@ -901,9 +901,9 @@
 		CEECBD421771CBEE005E6913 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CE562F5D178AC1F20081390F /* player.png */,
 				CEAB70E41789268C00847B1B /* buttons.png */,
 				CE9DFB64178834FC007744E4 /* background1.png */,
-				CE932A4B177FDD1F00EE0695 /* Player.png */,
 				CE2E1D23177DCDB600696F60 /* 跳跃.png */,
 				CE2E1D24177DCDB600696F60 /* 跳跃2.png */,
 				CE07BC87177BDEAB00D9657D /* pauseBg.png */,
@@ -2022,11 +2022,11 @@
 				CE07BC8A177BDEAB00D9657D /* PauseBtn.png in Resources */,
 				CE2E1D25177DCDB600696F60 /* 跳跃.png in Resources */,
 				CE2E1D26177DCDB600696F60 /* 跳跃2.png in Resources */,
-				CE932A4C177FDD1F00EE0695 /* Player.png in Resources */,
 				CE932A51177FEB7100EE0695 /* PlayerConfig.plist in Resources */,
 				CE9DFB65178834FC007744E4 /* background1.png in Resources */,
 				CEAB70E51789268C00847B1B /* buttons.png in Resources */,
 				CEAB70E7178927D900847B1B /* MenuButtonConfig.plist in Resources */,
+				CE562F5E178AC1F20081390F /* player.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

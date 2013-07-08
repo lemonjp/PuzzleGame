@@ -27,6 +27,10 @@ public:
     void createPlayer(CCLayer* layer);
     /*删除游戏玩家*/
     void deletePlayer(CCLayer* layer);
+    /*播放玩家动画*/
+    void playMoveAnim(CCSprite* sprite);
+    void playJumpAnim(CCSprite* sprite);
+    void playPushAnim(CCSprite* sprite);
 private:
     PlistLoader *plist;
     

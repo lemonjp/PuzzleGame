@@ -34,7 +34,7 @@ bool DemoLayer::init(){
     //添加暂停按钮
     this->addGamePauseButton(this);
     PGPlayer::sharedPlayer()->createPlayer(this);
-    
+
     scheduleUpdate();
     
     return true;
