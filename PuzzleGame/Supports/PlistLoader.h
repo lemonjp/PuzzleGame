@@ -13,7 +13,7 @@
 
 using namespace cocos2d;
 
-class CC_DLL PlistLoader : CCObject{
+class CC_DLL PlistLoader : public CCObject{
 public:
     virtual ~PlistLoader();
     //初始化plist文件

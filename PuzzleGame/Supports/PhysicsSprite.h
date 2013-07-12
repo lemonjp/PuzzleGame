@@ -46,6 +46,11 @@ public:
     
     //給刚体施加力
     void applyFroce(b2Vec2 force,b2Vec2 point);
+    //給刚体施加水平速度
+    void applyLinearImpulse(b2Vec2 speed,b2Vec2 point);
+    b2Vec2 getLinearImpulse();
+    //旋转刚体
+    
 private:
     CC_SYNTHESIZE(b2Body*, m_pBody, PhysicsBody);
 };

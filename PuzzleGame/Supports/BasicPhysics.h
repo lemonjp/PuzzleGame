@@ -17,7 +17,7 @@
 
 using namespace cocos2d;
 
-class BasicPhysics : CCObject{
+class BasicPhysics : public CCObject{
 public:
     BasicPhysics(){};
     virtual ~BasicPhysics(){};
@@ -38,7 +38,7 @@ public:
                     float density,
                     float friction,
                     float restitution,
-                    CCPoint boxData);
+                    CCSize boxData);
     //删除刚体
     void destroyBody(SpriteBody *sprite);
 private:

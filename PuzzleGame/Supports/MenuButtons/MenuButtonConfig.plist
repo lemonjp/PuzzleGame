@@ -4,5 +4,7 @@
 <dict>
 	<key>ButtonImage</key>
 	<string>buttons.png</string>
+	<key>ButtonPreSize</key>
+	<string>{64,64}</string>
 </dict>
 </plist>

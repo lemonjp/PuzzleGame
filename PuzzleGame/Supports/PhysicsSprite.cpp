@@ -110,3 +110,11 @@ CCAffineTransform SpriteBody::nodeToParentTransform(void)
 void SpriteBody::applyFroce(b2Vec2 force, b2Vec2 point){
     m_pBody->ApplyForce(force, point);
 }
+
+void SpriteBody::applyLinearImpulse(b2Vec2 speed, b2Vec2 point){
+    m_pBody->ApplyLinearImpulse(speed, point);
+}
+
+b2Vec2 SpriteBody::getLinearImpulse(){
+    return m_pBody->GetLinearVelocity();
+}

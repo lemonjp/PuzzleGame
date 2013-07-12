@@ -14,7 +14,7 @@ const char * doSomething = "doSomething";
 const char* moveLeft = "leftMoving";
 const char* moveRight = "RightMoving";
 const char* jump = "jumpping";
-
+ 
 
 bool gameControl::init(){
     if (!CCLayer::init()) return false;

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>ImagePreSize</key>
-	<string>{128,128}</string>
+	<string>{64,64}</string>
 	<key>PlayerFileName</key>
 	<string>player.png</string>
 	<key>PlayerPosition</key>
@@ -12,5 +12,7 @@
 	<string>100</string>
 	<key>PlayerZOrder</key>
 	<string>99</string>
+	<key>PlayerMoveSpeed</key>
+	<string>5.0f</string>
 </dict>
 </plist>

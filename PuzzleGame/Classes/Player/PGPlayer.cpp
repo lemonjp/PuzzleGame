@@ -54,11 +54,10 @@ void PGPlayer::addPlayerBodyToScreen(CCLayer* layer,CCTexture2D *playerTex){
     CCPoint position=CCPointFromString(positionStr->getCString());
     
     CCSpriteFrame *frame1=CCSpriteFrame::createWithTexture(playerTex, CCRectMake(0, 0, imageSize.width, imageSize.height));
-    SpriteBody *sprite=new SpriteBody();
+    sprite=new SpriteBody();
     
     sprite->initWithSpriteFrame(frame1);
     sprite->setPosition(position);
-    sprite->setScale(0.45f);
     sprite->autorelease();
     
     CCString *playerTag=dynamic_cast<CCString*>(plist->getObjectFromFileKey("PlayerTag"));
@@ -67,12 +66,28 @@ void PGPlayer::addPlayerBodyToScreen(CCLayer* layer,CCTexture2D *playerTex){
     layer->addChild(sprite,playerZOrder->intValue(),playerTag->intValue());
     //运行player动画
     this->playMoveAnim(sprite);
-    
+    //生成刚体
     BasicPhysics::sharedPhysics()->createBody(sprite,
                                               sprite->getPosition() ,
                                               b2_dynamicBody,
                                               0.8f,0.5f,0.0f,
-                                              ccp(3.0f,3.0f));
+                                              CCSizeMake(0.8f,0.8f));
+}
+
+void PGPlayer::playerMoveingInBox2d(PlayerDirection dir){
+    if (sprite->getLinearImpulse().x>=5||
+        sprite->getLinearImpulse().x<=-5) {
+        return;
+    }
+    
+    int PTM_RATIO=BasicPhysics::sharedPhysics()->getRATIO();
+    sprite->applyLinearImpulse(b2Vec2(dir,0),
+                               b2Vec2(sprite->getPosition().x/PTM_RATIO,
+                                      sprite->getPosition().y/PTM_RATIO));
+}
+
+void PGPlayer::playerJumpingInBox2d(PlayerDirection dir){
+    
 }
 
 void PGPlayer::playMoveAnim(CCSprite* sprite){

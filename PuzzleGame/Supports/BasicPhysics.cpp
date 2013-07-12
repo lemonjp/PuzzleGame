@@ -84,7 +84,7 @@ void BasicPhysics::crateEdgeShape(b2Body *groundBody, b2EdgeShape groundBox){
     CCSize s=CCDirector::sharedDirector()->getWinSize();
     //产生四边的碰撞墙壁
     //底部
-    groundBox.Set(b2Vec2(0,0),b2Vec2(s.width/PTM_RATIO,0));
+    groundBox.Set(b2Vec2(0,100/PTM_RATIO),b2Vec2(s.width/PTM_RATIO,100/PTM_RATIO));
     groundBody->CreateFixture(&groundBox,0);
     //顶部
     groundBox.Set(b2Vec2(0,s.height/PTM_RATIO), b2Vec2(s.width/PTM_RATIO,s.height/PTM_RATIO));
@@ -103,7 +103,7 @@ void BasicPhysics::createBody(SpriteBody *sprite,
                               float density,
                               float friction,
                               float restitution,
-                              CCPoint boxData){
+                              CCSize boxData){
     b2BodyDef bodyDef;
     bodyDef.type=type;
     bodyDef.position.Set(position.x/PTM_RATIO, position.y/PTM_RATIO);
@@ -115,7 +115,7 @@ void BasicPhysics::createBody(SpriteBody *sprite,
     //产生一个squareBox
     //产生一个square box
     b2PolygonShape dynamicBox;
-    dynamicBox.SetAsBox(boxData.x,boxData.y);
+    dynamicBox.SetAsBox(boxData.width,boxData.height);
     
     b2FixtureDef fixtureDef;
     fixtureDef.shape=&dynamicBox;

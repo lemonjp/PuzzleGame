@@ -6,6 +6,22 @@
 //
 //
 
+/*
+    文件说明:
+    
+        玩家类,此类在游戏中是单例,一个游戏只要一个主角.
+    
+        所以创建时候只要创建单例就好:如下
+        
+        PGPlayer::sharedPlayer()->createPlayer(this);//this代表是要加入到哪个层中
+ 
+        在配置文件PlayerConfig中可以修改相关的信息
+ 
+        要获得插件的相关信息 如大小 需要调用此方法
+ 
+        getSpriteBody()//返回SpriteBody类 此是继承自CCSprite
+ */
+
 #ifndef __PuzzleGame__PGPlayer__
 #define __PuzzleGame__PGPlayer__
 
@@ -14,9 +30,14 @@
 #include "BasicPhysics.h"
 #include "PhysicsSprite.h"
 
+typedef enum PlayerDirection{
+    p_left = -1,
+    p_right = 1,
+}PlayerDirection;
+
 using namespace cocos2d;
 
-class PGPlayer : CCObject{
+class PGPlayer : public CCObject{
 public:
     PGPlayer();
     virtual ~PGPlayer();
@@ -31,7 +52,12 @@ public:
     void playMoveAnim(CCSprite* sprite);
     void playJumpAnim(CCSprite* sprite);
     void playPushAnim(CCSprite* sprite);
+    /*移动玩家*/
+    void playerMoveingInBox2d(PlayerDirection dir);
+    void playerJumpingInBox2d(PlayerDirection dir);
 private:
+    CC_SYNTHESIZE(SpriteBody*, sprite, SpriteBody);
+    
     PlistLoader *plist;
     
     CCAnimate *moveAnim;

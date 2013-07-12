@@ -36,7 +36,7 @@ public:
     };
 };
 
-class PGPausePlugin : cocos2d::CCObject{
+class PGPausePlugin : public cocos2d::CCObject{
 public:
     PGPausePlugin();
     virtual ~PGPausePlugin();

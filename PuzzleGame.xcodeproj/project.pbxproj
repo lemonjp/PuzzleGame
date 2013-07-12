@@ -16,17 +16,21 @@
 		CE2E1D26177DCDB600696F60 /* 跳跃2.png in Resources */ = {isa = PBXBuildFile; fileRef = CE2E1D24177DCDB600696F60 /* 跳跃2.png */; };
 		CE417F3017729145001B7C4D /* PhysicsSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE417F2E17729145001B7C4D /* PhysicsSprite.cpp */; };
 		CE562F5E178AC1F20081390F /* player.png in Resources */ = {isa = PBXBuildFile; fileRef = CE562F5D178AC1F20081390F /* player.png */; };
+		CE562F62178AF20B0081390F /* background1.png in Resources */ = {isa = PBXBuildFile; fileRef = CE562F61178AF20B0081390F /* background1.png */; };
+		CE84B13C178DA8E600D1353E /* PGGear.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE84B13A178DA8E500D1353E /* PGGear.cpp */; };
 		CE8B2D63177442FD00DD878A /* PGPausePlugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE8B2D61177442FC00DD878A /* PGPausePlugin.cpp */; };
 		CE8B2D65177443CC00DD878A /* PGPausePluginConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE8B2D64177443CC00DD878A /* PGPausePluginConfig.plist */; };
 		CE932A4F177FDFAC00EE0695 /* PGPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE932A4D177FDFAC00EE0695 /* PGPlayer.cpp */; };
 		CE932A51177FEB7100EE0695 /* PlayerConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE932A50177FEB7100EE0695 /* PlayerConfig.plist */; };
-		CE9DFB65178834FC007744E4 /* background1.png in Resources */ = {isa = PBXBuildFile; fileRef = CE9DFB64178834FC007744E4 /* background1.png */; };
 		CEAB70E31789224C00847B1B /* MenuButtons.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEAB70E11789224C00847B1B /* MenuButtons.cpp */; };
 		CEAB70E51789268C00847B1B /* buttons.png in Resources */ = {isa = PBXBuildFile; fileRef = CEAB70E41789268C00847B1B /* buttons.png */; };
 		CEAB70E7178927D900847B1B /* MenuButtonConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEAB70E6178927D900847B1B /* MenuButtonConfig.plist */; };
+		CEB4A8A2178FE01800611AA5 /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB4A8A1178FE01800611AA5 /* green.png */; };
 		CEBC3B8E1771DB7100EACBCA /* PlistLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEBC3B8C1771DB7100EACBCA /* PlistLoader.cpp */; };
 		CEBC3B941771DC0C00EACBCA /* BasicPhysics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEBC3B921771DC0C00EACBCA /* BasicPhysics.cpp */; };
 		CEBC3B961771DDA200EACBCA /* PhysicsWorldPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEBC3B951771DDA200EACBCA /* PhysicsWorldPlist.plist */; };
+		CEE774C9178EA0EC00752A93 /* gameProp1.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE774C8178EA0EC00752A93 /* gameProp1.png */; };
+		CEE774CD178ED80B00752A93 /* PGBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE774CB178ED80B00752A93 /* PGBox.cpp */; };
 		CEECBD321771CBEE005E6913 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEECBD311771CBEE005E6913 /* QuartzCore.framework */; };
 		CEECBD341771CBEE005E6913 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEECBD331771CBEE005E6913 /* OpenGLES.framework */; };
 		CEECBD361771CBEE005E6913 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEECBD351771CBEE005E6913 /* OpenAL.framework */; };
@@ -271,6 +275,9 @@
 		CEECC0661771CBF3005E6913 /* b2WheelJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEECC0651771CBF3005E6913 /* b2WheelJoint.cpp */; };
 		CEECC06A1771CBF3005E6913 /* b2Rope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEECC0691771CBF3005E6913 /* b2Rope.cpp */; };
 		CEECC0711771CBF3005E6913 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEECC0701771CBF3005E6913 /* AppDelegate.cpp */; };
+		CEFE3CE41790354D00B42B00 /* PGLevel1Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEFE3CE21790354D00B42B00 /* PGLevel1Scene.cpp */; };
+		CEFE3CE71790362400B42B00 /* PGLevelManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEFE3CE51790362400B42B00 /* PGLevelManager.cpp */; };
+		CEFE3CEA17903C4B00B42B00 /* PGPlayerControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEFE3CE817903C4B00B42B00 /* PGPlayerControl.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -287,22 +294,28 @@
 		CE417F2E17729145001B7C4D /* PhysicsSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PhysicsSprite.cpp; path = Supports/PhysicsSprite.cpp; sourceTree = "<group>"; };
 		CE417F2F17729145001B7C4D /* PhysicsSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhysicsSprite.h; path = Supports/PhysicsSprite.h; sourceTree = "<group>"; };
 		CE562F5D178AC1F20081390F /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player.png; sourceTree = "<group>"; };
+		CE562F61178AF20B0081390F /* background1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background1.png; sourceTree = "<group>"; };
+		CE84B13A178DA8E500D1353E /* PGGear.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PGGear.cpp; path = Classes/PGGear.cpp; sourceTree = "<group>"; };
+		CE84B13B178DA8E600D1353E /* PGGear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PGGear.h; path = Classes/PGGear.h; sourceTree = "<group>"; };
 		CE8B2D61177442FC00DD878A /* PGPausePlugin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PGPausePlugin.cpp; path = Classes/PausePlugin/PGPausePlugin.cpp; sourceTree = "<group>"; };
 		CE8B2D62177442FC00DD878A /* PGPausePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PGPausePlugin.h; path = Classes/PausePlugin/PGPausePlugin.h; sourceTree = "<group>"; };
 		CE8B2D64177443CC00DD878A /* PGPausePluginConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PGPausePluginConfig.plist; path = Classes/PausePlugin/PGPausePluginConfig.plist; sourceTree = "<group>"; };
 		CE932A4D177FDFAC00EE0695 /* PGPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PGPlayer.cpp; path = Classes/Player/PGPlayer.cpp; sourceTree = "<group>"; };
 		CE932A4E177FDFAC00EE0695 /* PGPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PGPlayer.h; path = Classes/Player/PGPlayer.h; sourceTree = "<group>"; };
 		CE932A50177FEB7100EE0695 /* PlayerConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PlayerConfig.plist; path = Classes/Player/PlayerConfig.plist; sourceTree = "<group>"; };
-		CE9DFB64178834FC007744E4 /* background1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background1.png; path = Resources/GameResources/background1.png; sourceTree = "<group>"; };
 		CEAB70E11789224C00847B1B /* MenuButtons.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MenuButtons.cpp; path = Supports/MenuButtons/MenuButtons.cpp; sourceTree = "<group>"; };
 		CEAB70E21789224C00847B1B /* MenuButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuButtons.h; path = Supports/MenuButtons/MenuButtons.h; sourceTree = "<group>"; };
 		CEAB70E41789268C00847B1B /* buttons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = buttons.png; path = Supports/MenuButtons/buttons.png; sourceTree = "<group>"; };
 		CEAB70E6178927D900847B1B /* MenuButtonConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = MenuButtonConfig.plist; path = Supports/MenuButtons/MenuButtonConfig.plist; sourceTree = "<group>"; };
+		CEB4A8A1178FE01800611AA5 /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
 		CEBC3B8C1771DB7100EACBCA /* PlistLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlistLoader.cpp; path = Supports/PlistLoader.cpp; sourceTree = "<group>"; };
 		CEBC3B8D1771DB7100EACBCA /* PlistLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlistLoader.h; path = Supports/PlistLoader.h; sourceTree = "<group>"; };
 		CEBC3B921771DC0C00EACBCA /* BasicPhysics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BasicPhysics.cpp; path = Supports/BasicPhysics.cpp; sourceTree = "<group>"; };
 		CEBC3B931771DC0C00EACBCA /* BasicPhysics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BasicPhysics.h; path = Supports/BasicPhysics.h; sourceTree = "<group>"; };
 		CEBC3B951771DDA200EACBCA /* PhysicsWorldPlist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PhysicsWorldPlist.plist; path = Supports/PhysicsWorldPlist.plist; sourceTree = "<group>"; };
+		CEE774C8178EA0EC00752A93 /* gameProp1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gameProp1.png; path = Resources/gameProp1.png; sourceTree = "<group>"; };
+		CEE774CB178ED80B00752A93 /* PGBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PGBox.cpp; path = Classes/PGBox.cpp; sourceTree = "<group>"; };
+		CEE774CC178ED80B00752A93 /* PGBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PGBox.h; path = Classes/PGBox.h; sourceTree = "<group>"; };
 		CEECBD2E1771CBEE005E6913 /* PuzzleGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PuzzleGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEECBD311771CBEE005E6913 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CEECBD331771CBEE005E6913 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -832,6 +845,12 @@
 		CEECC06D1771CBF3005E6913 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		CEECC06F1771CBF3005E6913 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		CEECC0701771CBF3005E6913 /* AppDelegate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = Classes/AppDelegate.cpp; sourceTree = "<group>"; };
+		CEFE3CE21790354D00B42B00 /* PGLevel1Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PGLevel1Scene.cpp; path = Classes/PGLevel1Scene.cpp; sourceTree = "<group>"; };
+		CEFE3CE31790354D00B42B00 /* PGLevel1Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PGLevel1Scene.h; path = Classes/PGLevel1Scene.h; sourceTree = "<group>"; };
+		CEFE3CE51790362400B42B00 /* PGLevelManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PGLevelManager.cpp; path = Classes/PGLevelManager.cpp; sourceTree = "<group>"; };
+		CEFE3CE61790362400B42B00 /* PGLevelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PGLevelManager.h; path = Classes/PGLevelManager.h; sourceTree = "<group>"; };
+		CEFE3CE817903C4B00B42B00 /* PGPlayerControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PGPlayerControl.cpp; path = Classes/PGPlayerControl.cpp; sourceTree = "<group>"; };
+		CEFE3CE917903C4B00B42B00 /* PGPlayerControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PGPlayerControl.h; path = Classes/PGPlayerControl.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -854,6 +873,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE84B137178DA64A00D1353E /* PGResources */ = {
+			isa = PBXGroup;
+			children = (
+				CEB4A8A1178FE01800611AA5 /* green.png */,
+				CEE774C8178EA0EC00752A93 /* gameProp1.png */,
+				CE562F5D178AC1F20081390F /* player.png */,
+				CEAB70E41789268C00847B1B /* buttons.png */,
+				CE562F61178AF20B0081390F /* background1.png */,
+				CE2E1D23177DCDB600696F60 /* 跳跃.png */,
+				CE2E1D24177DCDB600696F60 /* 跳跃2.png */,
+				CE07BC87177BDEAB00D9657D /* pauseBg.png */,
+				CE07BC88177BDEAB00D9657D /* PauseBtn.png */,
+			);
+			name = PGResources;
+			sourceTree = "<group>";
+		};
+		CE84B13D178DAA7500D1353E /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				CE932A4E177FDFAC00EE0695 /* PGPlayer.h */,
+				CE932A4D177FDFAC00EE0695 /* PGPlayer.cpp */,
+				CE932A50177FEB7100EE0695 /* PlayerConfig.plist */,
+			);
+			name = Player;
+			sourceTree = "<group>";
+		};
+		CEE774CA178ECC5B00752A93 /* Gear */ = {
+			isa = PBXGroup;
+			children = (
+				CE84B13B178DA8E600D1353E /* PGGear.h */,
+				CE84B13A178DA8E500D1353E /* PGGear.cpp */,
+			);
+			name = Gear;
+			sourceTree = "<group>";
+		};
 		CEECBD251771CBEE005E6913 = {
 			isa = PBXGroup;
 			children = (
@@ -901,13 +955,7 @@
 		CEECBD421771CBEE005E6913 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				CE562F5D178AC1F20081390F /* player.png */,
-				CEAB70E41789268C00847B1B /* buttons.png */,
-				CE9DFB64178834FC007744E4 /* background1.png */,
-				CE2E1D23177DCDB600696F60 /* 跳跃.png */,
-				CE2E1D24177DCDB600696F60 /* 跳跃2.png */,
-				CE07BC87177BDEAB00D9657D /* pauseBg.png */,
-				CE07BC88177BDEAB00D9657D /* PauseBtn.png */,
+				CE84B137178DA64A00D1353E /* PGResources */,
 				CEECBD431771CBEE005E6913 /* CloseNormal.png */,
 				CEECBD451771CBEE005E6913 /* CloseSelected.png */,
 				CEECBD471771CBEE005E6913 /* Default.png */,
@@ -1898,6 +1946,12 @@
 				CEECC0701771CBF3005E6913 /* AppDelegate.cpp */,
 				CE11604F17882A710029B947 /* DemoLayer.h */,
 				CE11604E17882A6F0029B947 /* DemoLayer.cpp */,
+				CEFE3CE61790362400B42B00 /* PGLevelManager.h */,
+				CEFE3CE51790362400B42B00 /* PGLevelManager.cpp */,
+				CEFE3CE917903C4B00B42B00 /* PGPlayerControl.h */,
+				CEFE3CE817903C4B00B42B00 /* PGPlayerControl.cpp */,
+				CEFE3CE31790354D00B42B00 /* PGLevel1Scene.h */,
+				CEFE3CE21790354D00B42B00 /* PGLevel1Scene.cpp */,
 				CEF844FD177DCEEF000A8056 /* GamePlugin */,
 				CEECC07D1771CF41005E6913 /* Supports */,
 			);
@@ -1907,11 +1961,11 @@
 		CEECC07D1771CF41005E6913 /* Supports */ = {
 			isa = PBXGroup;
 			children = (
+				CE417F2F17729145001B7C4D /* PhysicsSprite.h */,
+				CE417F2E17729145001B7C4D /* PhysicsSprite.cpp */,
 				CEBC3B931771DC0C00EACBCA /* BasicPhysics.h */,
 				CEBC3B921771DC0C00EACBCA /* BasicPhysics.cpp */,
 				CEBC3B951771DDA200EACBCA /* PhysicsWorldPlist.plist */,
-				CE417F2F17729145001B7C4D /* PhysicsSprite.h */,
-				CE417F2E17729145001B7C4D /* PhysicsSprite.cpp */,
 				CEBC3B8D1771DB7100EACBCA /* PlistLoader.h */,
 				CEBC3B8C1771DB7100EACBCA /* PlistLoader.cpp */,
 				CEAB70E21789224C00847B1B /* MenuButtons.h */,
@@ -1924,9 +1978,10 @@
 		CEF844FD177DCEEF000A8056 /* GamePlugin */ = {
 			isa = PBXGroup;
 			children = (
-				CE932A4E177FDFAC00EE0695 /* PGPlayer.h */,
-				CE932A4D177FDFAC00EE0695 /* PGPlayer.cpp */,
-				CE932A50177FEB7100EE0695 /* PlayerConfig.plist */,
+				CEE774CC178ED80B00752A93 /* PGBox.h */,
+				CEE774CB178ED80B00752A93 /* PGBox.cpp */,
+				CEE774CA178ECC5B00752A93 /* Gear */,
+				CE84B13D178DAA7500D1353E /* Player */,
 				CEF844FF177DCF14000A8056 /* Pause */,
 				CEF844FE177DCF0A000A8056 /* Control */,
 			);
@@ -2023,10 +2078,12 @@
 				CE2E1D25177DCDB600696F60 /* 跳跃.png in Resources */,
 				CE2E1D26177DCDB600696F60 /* 跳跃2.png in Resources */,
 				CE932A51177FEB7100EE0695 /* PlayerConfig.plist in Resources */,
-				CE9DFB65178834FC007744E4 /* background1.png in Resources */,
 				CEAB70E51789268C00847B1B /* buttons.png in Resources */,
 				CEAB70E7178927D900847B1B /* MenuButtonConfig.plist in Resources */,
 				CE562F5E178AC1F20081390F /* player.png in Resources */,
+				CE562F62178AF20B0081390F /* background1.png in Resources */,
+				CEE774C9178EA0EC00752A93 /* gameProp1.png in Resources */,
+				CEB4A8A2178FE01800611AA5 /* green.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2269,6 +2326,11 @@
 				CE932A4F177FDFAC00EE0695 /* PGPlayer.cpp in Sources */,
 				CE11605017882A750029B947 /* DemoLayer.cpp in Sources */,
 				CEAB70E31789224C00847B1B /* MenuButtons.cpp in Sources */,
+				CE84B13C178DA8E600D1353E /* PGGear.cpp in Sources */,
+				CEE774CD178ED80B00752A93 /* PGBox.cpp in Sources */,
+				CEFE3CE41790354D00B42B00 /* PGLevel1Scene.cpp in Sources */,
+				CEFE3CE71790362400B42B00 /* PGLevelManager.cpp in Sources */,
+				CEFE3CEA17903C4B00B42B00 /* PGPlayerControl.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
