@@ -20,9 +20,11 @@ bool PGLevelManager::init(){
         return false;
     }
     
+    mapX=mapY=0;
+    
     //添加关卡背景和元素的层
     PGLevel1Scene *scene=PGLevel1Scene::create();
-    scene->setPosition(ccp(-100,0));
+    scene->setPosition(ccp(mapX,mapY));
     this->addChild(scene);
     
     //添加游戏控制和主角的层
@@ -35,6 +37,17 @@ bool PGLevelManager::init(){
     return true;
 }
 
+void PGLevelManager::gameSchedule(){
+    CCSprite *sprite=PGPlayer::sharedPlayer()->getSpriteBody();
+    CCLOG("%f,%f",sprite->getPosition().x,sprite->getPosition().y);
+}
+
 void PGLevelManager::update(float dt){
     BasicPhysics::sharedPhysics()->update(dt);
+    this->gameSchedule();
+}
+
+void PGLevelManager::draw(){
+    CCLayer::draw();
+    BasicPhysics::sharedPhysics()->draw();
 }

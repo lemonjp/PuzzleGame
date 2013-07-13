@@ -10,7 +10,7 @@
 #define __PuzzleGame__PGLevel1Scene__
 
 #include "cocos2d.h"
-
+#include "PGBox.h"
 using namespace cocos2d;
 
 class PGLevel1Scene : public CCLayer{

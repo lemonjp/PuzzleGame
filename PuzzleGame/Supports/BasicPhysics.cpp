@@ -42,10 +42,29 @@ void BasicPhysics::initWithPhysics(){
     
     world_=new b2World(gravity);
     
-    bool allowSleeping=loader->getObjectFromFileKey("AllowSleeping");
+    CCString* allowSleepingStr=dynamic_cast<CCString*>(loader->getObjectFromFileKey("AllowSleeping"));
+    bool allowSleeping=allowSleepingStr->boolValue();
     world_->SetAllowSleeping(allowSleeping);
-    bool contiunousPhysics=loader->getObjectFromFileKey("ContinuousPhysics");
+    
+    CCString* contiunousPhysicsStr=dynamic_cast<CCString*>(loader->getObjectFromFileKey("ContinuousPhysics"));
+    bool contiunousPhysics=contiunousPhysicsStr->boolValue();
     world_->SetContinuousPhysics(contiunousPhysics);
+    
+    //是否为调试模式
+    CCString* isDebugingStr=dynamic_cast<CCString*>(loader->getObjectFromFileKey("Debug"));
+    bool isDebuging=isDebugingStr->boolValue();
+    if (isDebuging) {
+        m_debugDraw = new GLESDebugDraw(PTM_RATIO);
+        world_->SetDebugDraw(m_debugDraw);
+        
+        uint32 flags=0;
+        flags += b2Draw::e_shapeBit;
+        flags += b2Draw::e_jointBit;
+        flags += b2Draw::e_aabbBit;
+        flags += b2Draw::e_pairBit;
+        flags += b2Draw::e_centerOfMassBit;
+        m_debugDraw->SetFlags(flags);
+    }
     
     b2BodyDef groundBodyDef;
     groundBodyDef.position.Set(0, 0);
@@ -82,18 +101,25 @@ void BasicPhysics::update(float dt){
 
 void BasicPhysics::crateEdgeShape(b2Body *groundBody, b2EdgeShape groundBox){
     CCSize s=CCDirector::sharedDirector()->getWinSize();
+    PlistLoader *loader=PlistLoader::initWithPlistFile("PhysicsWorldPlist.plist");
+    CCString *edgeWidthStr=dynamic_cast<CCString*>(loader->getObjectFromFileKey("EdgeWidth"));
+    int edgeWidth=edgeWidthStr->intValue();
+    CCString *edgeHeightStr=dynamic_cast<CCString*>(loader->getObjectFromFileKey("EdgeHeight"));
+    int edgeHeight=edgeHeightStr->intValue();
+    
     //产生四边的碰撞墙壁
     //底部
-    groundBox.Set(b2Vec2(0,100/PTM_RATIO),b2Vec2(s.width/PTM_RATIO,100/PTM_RATIO));
+    groundBox.Set(b2Vec2(0,(s.height-edgeHeight)/PTM_RATIO),
+                  b2Vec2(edgeWidth/PTM_RATIO,(s.height-edgeHeight)/PTM_RATIO));
     groundBody->CreateFixture(&groundBox,0);
     //顶部
-    groundBox.Set(b2Vec2(0,s.height/PTM_RATIO), b2Vec2(s.width/PTM_RATIO,s.height/PTM_RATIO));
+    groundBox.Set(b2Vec2(0,s.height/PTM_RATIO), b2Vec2(edgeWidth/PTM_RATIO,s.height/PTM_RATIO));
     groundBody->CreateFixture(&groundBox,0);
     //左边
     groundBox.Set(b2Vec2(0,s.height/PTM_RATIO), b2Vec2(0,0));
     groundBody->CreateFixture(&groundBox,0);
     //右边
-    groundBox.Set(b2Vec2(s.width/PTM_RATIO,s.height/PTM_RATIO), b2Vec2(s.width/PTM_RATIO,0));
+    groundBox.Set(b2Vec2(edgeWidth/PTM_RATIO,s.height/PTM_RATIO), b2Vec2(edgeWidth/PTM_RATIO,0));
     groundBody->CreateFixture(&groundBox,0);
 }
 
@@ -103,7 +129,7 @@ void BasicPhysics::createBody(SpriteBody *sprite,
                               float density,
                               float friction,
                               float restitution,
-                              CCSize boxData){
+                              CCSize sprContentSize){
     b2BodyDef bodyDef;
     bodyDef.type=type;
     bodyDef.position.Set(position.x/PTM_RATIO, position.y/PTM_RATIO);
@@ -115,7 +141,7 @@ void BasicPhysics::createBody(SpriteBody *sprite,
     //产生一个squareBox
     //产生一个square box
     b2PolygonShape dynamicBox;
-    dynamicBox.SetAsBox(boxData.width,boxData.height);
+    dynamicBox.SetAsBox(sprContentSize.width/2/PTM_RATIO,sprContentSize.height/2/PTM_RATIO);
     
     b2FixtureDef fixtureDef;
     fixtureDef.shape=&dynamicBox;
@@ -131,4 +157,19 @@ void BasicPhysics::createBody(SpriteBody *sprite,
 void BasicPhysics::destroyBody(SpriteBody *sprite){
     b2Body *spriteBody=sprite->getPhysicsBody();
     world_->DestroyBody(spriteBody);
+}
+
+void BasicPhysics::draw(){
+    PlistLoader *loader=PlistLoader::initWithPlistFile("PhysicsWorldPlist.plist");
+    CCString* isDebugingStr=dynamic_cast<CCString*>(loader->getObjectFromFileKey("Debug"));
+    bool isDebuging=isDebugingStr->boolValue();
+    
+    if (!isDebuging) {
+        return;
+    }
+    
+    ccGLEnableVertexAttribs(kCCVertexAttribFlag_Position);
+    kmGLPushMatrix();
+    world_->DrawDebugData();
+    kmGLPopMatrix();
 }

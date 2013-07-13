@@ -12,6 +12,7 @@
 #include "cocos2d.h"
 #include "PGPlayer.h"
 #include "PGGameControl.h"
+#include "BasicPhysics.h"
 
 using namespace cocos2d;
 
@@ -23,10 +24,10 @@ public:
     void playerMoveLeft();
     void playerMoveRight();
     void playerJumping();
-
+    
     CREATE_FUNC(PGPlayerControl);
 private:
-    
+    CCSize size;
 };
 
 #endif /* defined(__PuzzleGame__PGPlayerControl__) */

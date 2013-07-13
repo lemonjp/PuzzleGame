@@ -71,7 +71,7 @@ void PGPlayer::addPlayerBodyToScreen(CCLayer* layer,CCTexture2D *playerTex){
                                               sprite->getPosition() ,
                                               b2_dynamicBody,
                                               0.8f,0.5f,0.0f,
-                                              CCSizeMake(0.8f,0.8f));
+                                              sprite->getContentSize());
 }
 
 void PGPlayer::playerMoveingInBox2d(PlayerDirection dir){
@@ -86,8 +86,11 @@ void PGPlayer::playerMoveingInBox2d(PlayerDirection dir){
                                       sprite->getPosition().y/PTM_RATIO));
 }
 
-void PGPlayer::playerJumpingInBox2d(PlayerDirection dir){
-    
+void PGPlayer::playerJumpingInBox2d(){
+    int PTM_RATIO=BasicPhysics::sharedPhysics()->getRATIO();
+    sprite->applyLinearImpulse(b2Vec2(0,2.0f),
+                               b2Vec2(sprite->getPosition().x/PTM_RATIO,
+                                      sprite->getPosition().y/PTM_RATIO));
 }
 
 void PGPlayer::playMoveAnim(CCSprite* sprite){

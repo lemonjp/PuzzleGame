@@ -26,6 +26,9 @@ bool PGPlayerControl::init(){
         return false;
     }
     
+    //屏幕大小
+    size=CCDirector::sharedDirector()->getWinSize();
+    
     //添加玩家
     PGPlayer::sharedPlayer()->createPlayer(this);
     
@@ -51,5 +54,6 @@ void PGPlayerControl::playerMoveRight(){
 }
 
 void PGPlayerControl::playerJumping(){
-    
+    PGPlayer::sharedPlayer()->playerJumpingInBox2d();
 }
+

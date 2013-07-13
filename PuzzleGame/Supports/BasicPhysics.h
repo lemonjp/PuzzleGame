@@ -11,7 +11,7 @@
 
 #include "cocos2d.h"
 #include "Box2D.h"
-
+#include "GLES-Render.h"
 #include "PhysicsSprite.h"
 #include "PlistLoader.h"
 
@@ -38,13 +38,15 @@ public:
                     float density,
                     float friction,
                     float restitution,
-                    CCSize boxData);
+                    CCSize sprContentSize);
     //删除刚体
     void destroyBody(SpriteBody *sprite);
+    //绘图
+    void draw();
 private:
     CC_SYNTHESIZE_READONLY(b2World*, world_, World);
     CC_SYNTHESIZE(int, PTM_RATIO, RATIO);
-    
+    GLESDebugDraw *m_debugDraw;
     void crateEdgeShape(b2Body* groundBody,b2EdgeShape groundBox);
 };
 

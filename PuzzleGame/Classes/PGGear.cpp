@@ -28,7 +28,7 @@ void PGGear::addGearToScreen(CCLayer *layer, CCPoint point){
                                               gearBody->getPosition(),
                                               b2_staticBody,
                                               0.8f,0.5f,0.0f,
-                                              CCSizeMake(1.0f, 1.0f));
+                                              gearBody->getContentSize());
 }
 
 bool PGGear::spriteIsContactGear(CCSprite* sprite){

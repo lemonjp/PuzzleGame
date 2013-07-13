@@ -49,7 +49,8 @@ public:
     //給刚体施加水平速度
     void applyLinearImpulse(b2Vec2 speed,b2Vec2 point);
     b2Vec2 getLinearImpulse();
-    //旋转刚体
+    //水平阻力
+    void setLinearDamping(float damping);
     
 private:
     CC_SYNTHESIZE(b2Body*, m_pBody, PhysicsBody);

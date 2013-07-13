@@ -53,8 +53,8 @@ public:
     void playJumpAnim(CCSprite* sprite);
     void playPushAnim(CCSprite* sprite);
     /*移动玩家*/
-    void playerMoveingInBox2d(PlayerDirection dir);
-    void playerJumpingInBox2d(PlayerDirection dir);
+    void playerMoveingInBox2d(PlayerDirection dir);//左边或者右边
+    void playerJumpingInBox2d();
 private:
     CC_SYNTHESIZE(SpriteBody*, sprite, SpriteBody);
     

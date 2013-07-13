@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		CE07BC89177BDEAB00D9657D /* pauseBg.png in Resources */ = {isa = PBXBuildFile; fileRef = CE07BC87177BDEAB00D9657D /* pauseBg.png */; };
 		CE07BC8A177BDEAB00D9657D /* PauseBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = CE07BC88177BDEAB00D9657D /* PauseBtn.png */; };
-		CE11605017882A750029B947 /* DemoLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE11604E17882A6F0029B947 /* DemoLayer.cpp */; };
 		CE2E1D21177DCD9B00696F60 /* PGBtnItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE2E1D1D177DCD9A00696F60 /* PGBtnItem.cpp */; };
 		CE2E1D22177DCD9B00696F60 /* PGGameControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE2E1D1F177DCD9B00696F60 /* PGGameControl.cpp */; };
 		CE2E1D25177DCDB600696F60 /* 跳跃.png in Resources */ = {isa = PBXBuildFile; fileRef = CE2E1D23177DCDB600696F60 /* 跳跃.png */; };
@@ -29,6 +28,7 @@
 		CEBC3B8E1771DB7100EACBCA /* PlistLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEBC3B8C1771DB7100EACBCA /* PlistLoader.cpp */; };
 		CEBC3B941771DC0C00EACBCA /* BasicPhysics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEBC3B921771DC0C00EACBCA /* BasicPhysics.cpp */; };
 		CEBC3B961771DDA200EACBCA /* PhysicsWorldPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEBC3B951771DDA200EACBCA /* PhysicsWorldPlist.plist */; };
+		CEE5B2001791306D00EFBD5C /* GLES-Render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE5B1FF1791306D00EFBD5C /* GLES-Render.cpp */; };
 		CEE774C9178EA0EC00752A93 /* gameProp1.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE774C8178EA0EC00752A93 /* gameProp1.png */; };
 		CEE774CD178ED80B00752A93 /* PGBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE774CB178ED80B00752A93 /* PGBox.cpp */; };
 		CEECBD321771CBEE005E6913 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEECBD311771CBEE005E6913 /* QuartzCore.framework */; };
@@ -283,8 +283,6 @@
 /* Begin PBXFileReference section */
 		CE07BC87177BDEAB00D9657D /* pauseBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pauseBg.png; path = Classes/PausePlugin/pauseBg.png; sourceTree = "<group>"; };
 		CE07BC88177BDEAB00D9657D /* PauseBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PauseBtn.png; path = Classes/PausePlugin/PauseBtn.png; sourceTree = "<group>"; };
-		CE11604E17882A6F0029B947 /* DemoLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DemoLayer.cpp; path = Classes/DemoLayer.cpp; sourceTree = "<group>"; };
-		CE11604F17882A710029B947 /* DemoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DemoLayer.h; path = Classes/DemoLayer.h; sourceTree = "<group>"; };
 		CE2E1D1D177DCD9A00696F60 /* PGBtnItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PGBtnItem.cpp; path = Classes/Controller/PGBtnItem.cpp; sourceTree = "<group>"; };
 		CE2E1D1E177DCD9A00696F60 /* PGBtnItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PGBtnItem.h; path = Classes/Controller/PGBtnItem.h; sourceTree = "<group>"; };
 		CE2E1D1F177DCD9B00696F60 /* PGGameControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PGGameControl.cpp; path = Classes/Controller/PGGameControl.cpp; sourceTree = "<group>"; };
@@ -313,6 +311,8 @@
 		CEBC3B921771DC0C00EACBCA /* BasicPhysics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BasicPhysics.cpp; path = Supports/BasicPhysics.cpp; sourceTree = "<group>"; };
 		CEBC3B931771DC0C00EACBCA /* BasicPhysics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BasicPhysics.h; path = Supports/BasicPhysics.h; sourceTree = "<group>"; };
 		CEBC3B951771DDA200EACBCA /* PhysicsWorldPlist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PhysicsWorldPlist.plist; path = Supports/PhysicsWorldPlist.plist; sourceTree = "<group>"; };
+		CEE5B1FE1791306500EFBD5C /* GLES-Render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GLES-Render.h"; path = "Supports/GLES-Render.h"; sourceTree = "<group>"; };
+		CEE5B1FF1791306D00EFBD5C /* GLES-Render.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "GLES-Render.cpp"; path = "Supports/GLES-Render.cpp"; sourceTree = "<group>"; };
 		CEE774C8178EA0EC00752A93 /* gameProp1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gameProp1.png; path = Resources/gameProp1.png; sourceTree = "<group>"; };
 		CEE774CB178ED80B00752A93 /* PGBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PGBox.cpp; path = Classes/PGBox.cpp; sourceTree = "<group>"; };
 		CEE774CC178ED80B00752A93 /* PGBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PGBox.h; path = Classes/PGBox.h; sourceTree = "<group>"; };
@@ -897,15 +897,6 @@
 				CE932A50177FEB7100EE0695 /* PlayerConfig.plist */,
 			);
 			name = Player;
-			sourceTree = "<group>";
-		};
-		CEE774CA178ECC5B00752A93 /* Gear */ = {
-			isa = PBXGroup;
-			children = (
-				CE84B13B178DA8E600D1353E /* PGGear.h */,
-				CE84B13A178DA8E500D1353E /* PGGear.cpp */,
-			);
-			name = Gear;
 			sourceTree = "<group>";
 		};
 		CEECBD251771CBEE005E6913 = {
@@ -1944,8 +1935,6 @@
 			children = (
 				CEECC06F1771CBF3005E6913 /* AppDelegate.h */,
 				CEECC0701771CBF3005E6913 /* AppDelegate.cpp */,
-				CE11604F17882A710029B947 /* DemoLayer.h */,
-				CE11604E17882A6F0029B947 /* DemoLayer.cpp */,
 				CEFE3CE61790362400B42B00 /* PGLevelManager.h */,
 				CEFE3CE51790362400B42B00 /* PGLevelManager.cpp */,
 				CEFE3CE917903C4B00B42B00 /* PGPlayerControl.h */,
@@ -1966,6 +1955,8 @@
 				CEBC3B931771DC0C00EACBCA /* BasicPhysics.h */,
 				CEBC3B921771DC0C00EACBCA /* BasicPhysics.cpp */,
 				CEBC3B951771DDA200EACBCA /* PhysicsWorldPlist.plist */,
+				CEE5B1FE1791306500EFBD5C /* GLES-Render.h */,
+				CEE5B1FF1791306D00EFBD5C /* GLES-Render.cpp */,
 				CEBC3B8D1771DB7100EACBCA /* PlistLoader.h */,
 				CEBC3B8C1771DB7100EACBCA /* PlistLoader.cpp */,
 				CEAB70E21789224C00847B1B /* MenuButtons.h */,
@@ -1980,7 +1971,8 @@
 			children = (
 				CEE774CC178ED80B00752A93 /* PGBox.h */,
 				CEE774CB178ED80B00752A93 /* PGBox.cpp */,
-				CEE774CA178ECC5B00752A93 /* Gear */,
+				CE84B13B178DA8E600D1353E /* PGGear.h */,
+				CE84B13A178DA8E500D1353E /* PGGear.cpp */,
 				CE84B13D178DAA7500D1353E /* Player */,
 				CEF844FF177DCF14000A8056 /* Pause */,
 				CEF844FE177DCF0A000A8056 /* Control */,
@@ -2324,13 +2316,13 @@
 				CE2E1D21177DCD9B00696F60 /* PGBtnItem.cpp in Sources */,
 				CE2E1D22177DCD9B00696F60 /* PGGameControl.cpp in Sources */,
 				CE932A4F177FDFAC00EE0695 /* PGPlayer.cpp in Sources */,
-				CE11605017882A750029B947 /* DemoLayer.cpp in Sources */,
 				CEAB70E31789224C00847B1B /* MenuButtons.cpp in Sources */,
 				CE84B13C178DA8E600D1353E /* PGGear.cpp in Sources */,
 				CEE774CD178ED80B00752A93 /* PGBox.cpp in Sources */,
 				CEFE3CE41790354D00B42B00 /* PGLevel1Scene.cpp in Sources */,
 				CEFE3CE71790362400B42B00 /* PGLevelManager.cpp in Sources */,
 				CEFE3CEA17903C4B00B42B00 /* PGPlayerControl.cpp in Sources */,
+				CEE5B2001791306D00EFBD5C /* GLES-Render.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

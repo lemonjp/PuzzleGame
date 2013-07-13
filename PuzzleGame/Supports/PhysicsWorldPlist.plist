@@ -5,15 +5,21 @@
 	<key>Version</key>
 	<dict>
 		<key>major</key>
-		<string>1.0.0</string>
+		<string>1.0.1</string>
 	</dict>
 	<key>Gravity</key>
 	<string>{0.0,-10.0}</string>
 	<key>AllowSleeping</key>
-	<true/>
+	<string>true</string>
 	<key>ContinuousPhysics</key>
-	<true/>
+	<string>true</string>
 	<key>PTM_RATIO</key>
 	<string>32</string>
+	<key>EdgeWidth</key>
+	<string>1440</string>
+	<key>EdgeHeight</key>
+	<string>240</string>
+	<key>Debug</key>
+	<string>true</string>
 </dict>
 </plist>

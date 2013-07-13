@@ -25,5 +25,11 @@ public:
     CREATE_FUNC(PGLevelManager);
     
     void update(float dt);
+    void draw();
+private:
+    //背景和元素图层的位置
+    float mapX,mapY;
+    //游戏主循环
+    void gameSchedule();
 };
 #endif /* defined(__PuzzleGame__PGLevelManager__) */

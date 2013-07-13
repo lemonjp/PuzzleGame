@@ -118,3 +118,7 @@ void SpriteBody::applyLinearImpulse(b2Vec2 speed, b2Vec2 point){
 b2Vec2 SpriteBody::getLinearImpulse(){
     return m_pBody->GetLinearVelocity();
 }
+
+void SpriteBody::setLinearDamping(float damping){
+    m_pBody->SetLinearDamping(damping);
+}

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>ImagePreSize</key>
-	<string>{64,64}</string>
+	<string>{63,63}</string>
 	<key>PlayerFileName</key>
 	<string>player.png</string>
 	<key>PlayerPosition</key>

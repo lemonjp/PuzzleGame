@@ -24,7 +24,13 @@ bool PGLevel1Scene::init(){
     
     CCSize size=CCDirector::sharedDirector()->getWinSize();
     //添加背景
-    this->addGameBackground(this,ccp(size.width/2,size.height/2));
+    //this->addGameBackground(this,ccp(size.width/2,size.height/2));
+    //this->addGameBackground(this,ccp(size.width/2+size.width,size.height/2));
+    //this->addGameBackground(this,ccp(size.width/2+size.width*2,size.height/2));
+    
+    //添加可以移动的箱子
+    PGBox *box=new PGBox();
+    box->addBoxToScreen(this, ccp(100, 200));
     
     return true;
 }
