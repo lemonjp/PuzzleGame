@@ -12,9 +12,16 @@
 #include "cocos2d.h"
 
 #include "BasicPhysics.h"
+#include "PGPlayer.h"
+#include "PGGameControl.h"
 
-#include "PGPlayerControl.h"
+#include "PGLevelScene.h"
 #include "PGLevel1Scene.h"
+
+//屏幕移动最大距离
+#define Scene_Move_MAX_Width 1920
+//屏幕移动最小距离
+#define Scene_Move_MIN_Width 243
 
 using namespace cocos2d;
 
@@ -24,11 +31,21 @@ public:
     virtual bool init();
     CREATE_FUNC(PGLevelManager);
     
+    void playerMoveLeft();
+    void playerMoveRight();
+    void playerJumping();
+    
     void update(float dt);
     void draw();
+    
+    void contactBegining();
+    void contactEnded();
+    
 private:
-    //背景和元素图层的位置
-    float mapX,mapY;
+    PGLevelScene *currentScene;
+    CCSize winSize;
+    //参考点
+    CCPoint referPoint;
     //游戏主循环
     void gameSchedule();
 };

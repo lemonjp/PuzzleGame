@@ -23,8 +23,8 @@ bool gameControl::init(){
     setTouchEnabled(true);
     m_bIsTouchEventHappenInBtnBegin = true;
     /*按钮纹理*/
-    CCTexture2D* t1 = CCTextureCache::sharedTextureCache()->addImage("跳跃.png");
-    CCTexture2D* t2 = CCTextureCache::sharedTextureCache()->addImage("跳跃2.png");
+    CCTexture2D* t1 = CCTextureCache::sharedTextureCache()->addImage("control_btn2.png");
+    CCTexture2D* t2 = CCTextureCache::sharedTextureCache()->addImage("control_btn1.png");
     
     /*按钮*/
     m_leftBtn = Bz_btnItem::createWithNormalTexAndSelectedTex(t1, t2);
@@ -54,7 +54,7 @@ gameControl::initWithButton(){
     /*位置*/
     m_leftBtn->setPosition(ccp(winSize.width/8,
                                winSize.height/8));
-    m_rightBtn->setPosition(ccp(winSize.width*3/8,
+    m_rightBtn->setPosition(ccp(winSize.width*2/8+20,
                                 winSize.height/8));
     m_jumpBtn->setPosition(ccp(winSize.width*7/8,
                                winSize.height/8));

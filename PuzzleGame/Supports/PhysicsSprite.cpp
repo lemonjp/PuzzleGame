@@ -8,64 +8,40 @@
 
 #include "PhysicsSprite.h"
 
+const char* contactBegin = "begin";
+const char* contactEnd = "end";
+const char* preSolve = "Pre";
+const char* postSolve = "post";
+
 #define PTM_RATIO 32
 
-void BWContactListener::BeginContact(b2Contact* contact){
+using namespace cocos2d;
+using namespace cocos2d::extension;
+
+void ContactListener::BeginContact(b2Contact* contact){
     if (contact) {
-        //Add Audio
-        mc.fixtureA=contact->GetFixtureA();
-        mc.fixtureB=contact->GetFixtureB();
-        
-        mc.bodyA=contact->GetFixtureA()->GetBody();
-        mc.bodyB=contact->GetFixtureB()->GetBody();
-        
-        SpriteBody *snpriteA=(SpriteBody*)mc.bodyA->GetUserData();
-        SpriteBody *spriteB=(SpriteBody*)mc.bodyB->GetUserData();
-        
-//        if (spriteA!=NULL) {
-//            spriteA->setIsColliding(true);
-//            if (mc.bodyA->GetLinearVelocity().y<-0.1){//下落
-//                spriteA->setIsContinueColliding(true);
-//            }
-//        }
-//        if(spriteB!=NULL){
-//            spriteB->setIsColliding(true);//代表碰撞了
-//            if (mc.bodyB->GetLinearVelocity().y<-0.1){//下落
-//                spriteB->setIsContinueColliding(true);
-//            }
-//        }
-//        
+        //观察者模式用
+        POST_MSG(contactBegin);
         contact_list.push_back(mc);
     }
     B2_NOT_USED(contact);
-    //CCLOG("Begin!");
 }
 
-void BWContactListener::EndContact(b2Contact* contact){
-    SpriteBody *spriteA=(SpriteBody*)mc.bodyA->GetUserData();
-    SpriteBody *spriteB=(SpriteBody*)mc.bodyB->GetUserData();
-    
-//    if (spriteA!=NULL) {
-//        spriteA->setIsColliding(false);
-//        CCLOG("%f",mc.bodyA->GetLinearVelocity().y);
-//        //不符合让持续碰撞停止条件
-//        if (mc.bodyA->GetLinearVelocity().y>0.1){
-//            spriteA->setIsContinueColliding(false);
-//        }
-//    }
-//    if(spriteB!=NULL){
-//        spriteB->setIsColliding(false);//代表碰撞了
-//        CCLOG("%f",mc.bodyB->GetLinearVelocity().y);
-//        //不符合让持续碰撞停止条件
-//        if (mc.bodyB->GetLinearVelocity().y>0.1){
-//            spriteB->setIsContinueColliding(false);
-//        }
-//    }
-    
-    contact_list.clear();
+void ContactListener::EndContact(b2Contact* contact){
+    if (contact) {
+        POST_MSG(contactEnd);
+        contact_list.clear();
+    }
     B2_NOT_USED(contact);
 }
 
+void ContactListener::PreSolve(b2Contact *contact, const b2Manifold *oldManfold){
+    POST_MSG(preSolve);
+}
+
+void ContactListener::PostSolve(b2Contact *contact, const b2ContactImpulse *impulse){
+    POST_MSG(postSolve);
+}
 
 SpriteBody::SpriteBody()
 : m_pBody(NULL)
@@ -119,6 +95,26 @@ b2Vec2 SpriteBody::getLinearImpulse(){
     return m_pBody->GetLinearVelocity();
 }
 
+void SpriteBody::setTransform(b2Vec2 pos, float32 angle){
+    m_pBody->SetTransform(pos, angle);
+}
+
 void SpriteBody::setLinearDamping(float damping){
     m_pBody->SetLinearDamping(damping);
+}
+
+void SpriteBody::setIsAwake(bool flag){
+    m_pBody->SetAwake(flag);
+}
+
+void SpriteBody::setFixedRotation(bool flag){
+    m_pBody->SetFixedRotation(flag);
+}
+
+void SpriteBody::awakeBody(){
+    m_pBody->SetAwake(true);
+}
+
+void SpriteBody::setAngle(float angle){
+    m_pBody->SetAngularVelocity((angle/180.0)*M_PI*30);
 }

@@ -20,7 +20,6 @@
 
 using namespace cocos2d;
 
-
 class PluginNotificationType{
 private:
     CC_SYNTHESIZE_READONLY(const char*, music, Music);

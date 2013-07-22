@@ -21,12 +21,15 @@ BasicPhysics* BasicPhysics::sharedPhysics(){
 }
 
 void BasicPhysics::end(){
-    gamePhysics=NULL;
     CC_SAFE_RELEASE(gamePhysics);
+    gamePhysics=NULL;
     
     //删除世界
     CC_SAFE_DELETE(world_);
     world_=NULL;
+    
+    CC_SAFE_DELETE(contactListener);
+    CC_SAFE_DELETE(m_debugDraw);
 }
 
 void BasicPhysics::initWithPhysics(){
@@ -66,11 +69,16 @@ void BasicPhysics::initWithPhysics(){
         m_debugDraw->SetFlags(flags);
     }
     
+    //碰撞事件
+    contactListener = new ContactListener();
+    world_->SetContactListener(contactListener);
+    
     b2BodyDef groundBodyDef;
     groundBodyDef.position.Set(0, 0);
-    b2Body* groundBody=world_->CreateBody(&groundBodyDef);
+    groundBody=world_->CreateBody(&groundBodyDef);
     b2EdgeShape groundBox;
     
+    //产生边缘
     this->crateEdgeShape(groundBody, groundBox);
 }
 
@@ -157,6 +165,32 @@ void BasicPhysics::createBody(SpriteBody *sprite,
 void BasicPhysics::destroyBody(SpriteBody *sprite){
     b2Body *spriteBody=sprite->getPhysicsBody();
     world_->DestroyBody(spriteBody);
+}
+
+void BasicPhysics::createRevoiuteJoint(b2Body *body,float torque){
+    if (body->GetUserData()==NULL) {
+        CCLOG("ERROR:body is null!");
+        return;
+    }
+    CCSprite *bodySprite=(CCSprite*)(body->GetUserData());
+    //自己产生一个刚体
+    b2BodyDef bodyDef;
+    bodyDef.type=b2_staticBody;
+    bodyDef.position.Set(bodySprite->getPosition().x/PTM_RATIO, bodySprite->getPosition().y/PTM_RATIO);
+    
+    //在物理世界中产生body
+    b2Body *tempbody=world_->CreateBody(&bodyDef);
+    
+    b2RevoluteJointDef jointDef;
+    jointDef.Initialize(tempbody,body,
+                        b2Vec2(bodySprite->getPosition().x/PTM_RATIO,bodySprite->getPosition().y/PTM_RATIO));
+    //如果扭力不为0，则添加扭力
+    if (torque!=0) {
+        jointDef.enableMotor=true;
+        jointDef.motorSpeed=M_PI*2;
+        jointDef.maxMotorTorque=torque;
+    }
+    world_->CreateJoint(&jointDef);
 }
 
 void BasicPhysics::draw(){

@@ -10,7 +10,7 @@
 	<key>Gravity</key>
 	<string>{0.0,-10.0}</string>
 	<key>AllowSleeping</key>
-	<string>true</string>
+	<string>false</string>
 	<key>ContinuousPhysics</key>
 	<string>true</string>
 	<key>PTM_RATIO</key>

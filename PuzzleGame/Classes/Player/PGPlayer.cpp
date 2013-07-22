@@ -20,7 +20,12 @@ PGPlayer* PGPlayer::sharedPlayer(){
 }
 
 PGPlayer::PGPlayer(){
+    //是否有碰撞到其它刚体
+    isContinueCollde=true;
     plist=PlistLoader::initWithPlistFile("PlayerConfig.plist");
+    //获取玩家的速度
+    CCString *speedStr=dynamic_cast<CCString*>(plist->getObjectFromFileKey("PlayerMoveSpeed"));
+    speed=speedStr->floatValue();
 }
 
 PGPlayer::~PGPlayer(){
@@ -29,8 +34,11 @@ PGPlayer::~PGPlayer(){
 
 void PGPlayer::createPlayer(CCLayer* layer){
     CCString *file=dynamic_cast<CCString*>(plist->getObjectFromFileKey("PlayerFileName"));
+    CCString *file2=dynamic_cast<CCString*>(plist->getObjectFromFileKey("PlayerFileName2"));
     //用纹理缓存（资源池）加载纹理
     CCTexture2D *playerTex=CCTextureCache::sharedTextureCache()->addImage(file->getCString());
+    CCTexture2D *playerTex2=CCTextureCache::sharedTextureCache()->addImage(file2->getCString());
+    
     //初始化动画
     this->initWithMoveAnimation(playerTex);
     this->initWithJumpAnimation(playerTex);
@@ -42,8 +50,10 @@ void PGPlayer::createPlayer(CCLayer* layer){
 
 void PGPlayer::deletePlayer(CCLayer* layer){
     CCString *file=dynamic_cast<CCString*>(plist->getObjectFromFileKey("PlayerFileName"));
+    CCString *file2=dynamic_cast<CCString*>(plist->getObjectFromFileKey("PlayerFileName2"));
     //删除纹理
     CCTextureCache::sharedTextureCache()->removeTextureForKey(file->getCString());
+    CCTextureCache::sharedTextureCache()->removeTextureForKey(file2->getCString());
 }
 
 void PGPlayer::addPlayerBodyToScreen(CCLayer* layer,CCTexture2D *playerTex){
@@ -71,24 +81,27 @@ void PGPlayer::addPlayerBodyToScreen(CCLayer* layer,CCTexture2D *playerTex){
                                               sprite->getPosition() ,
                                               b2_dynamicBody,
                                               0.8f,0.5f,0.0f,
-                                              sprite->getContentSize());
+                                              CCSizeMake(35, 50));
+    //设置固定旋转
+    sprite->setFixedRotation(true);
 }
 
 void PGPlayer::playerMoveingInBox2d(PlayerDirection dir){
-    if (sprite->getLinearImpulse().x>=5||
-        sprite->getLinearImpulse().x<=-5) {
-        return;
-    }
-    
+    float posX=sprite->getPosition().x;
+    //CCLOG("%f",sprite->getLinearImpulse().y);
+
     int PTM_RATIO=BasicPhysics::sharedPhysics()->getRATIO();
-    sprite->applyLinearImpulse(b2Vec2(dir,0),
-                               b2Vec2(sprite->getPosition().x/PTM_RATIO,
-                                      sprite->getPosition().y/PTM_RATIO));
+    
+    sprite->setTransform(b2Vec2((posX+dir*speed)/PTM_RATIO,
+                                sprite->getPosition().y/PTM_RATIO), 0);
 }
 
 void PGPlayer::playerJumpingInBox2d(){
+    if (!(sprite->getLinearImpulse().y>=-2.0f&&this->getIsContinueCollde())){
+        return;
+    }
     int PTM_RATIO=BasicPhysics::sharedPhysics()->getRATIO();
-    sprite->applyLinearImpulse(b2Vec2(0,2.0f),
+    sprite->applyLinearImpulse(b2Vec2(0,8.0f),
                                b2Vec2(sprite->getPosition().x/PTM_RATIO,
                                       sprite->getPosition().y/PTM_RATIO));
 }
@@ -155,4 +168,8 @@ void PGPlayer::initWithPushAnimation(CCTexture2D *playerTex){
     //创建Animate播放动画
     animation->setDelayPerUnit(0.3f);
     pushAnim=CCAnimate::create(animation);
+}
+
+void PGPlayer::awakePlayer(){
+    sprite->awakeBody();
 }

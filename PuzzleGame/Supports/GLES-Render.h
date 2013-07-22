@@ -59,5 +59,4 @@ public:
     virtual void DrawAABB(b2AABB* aabb, const b2Color& color);
 };
 
-
 #endif

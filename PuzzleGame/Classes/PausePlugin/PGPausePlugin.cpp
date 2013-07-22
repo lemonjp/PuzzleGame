@@ -8,8 +8,6 @@
 
 #include "PGPausePlugin.h"
 
-using namespace cocos2d;
-
 static PGPausePlugin* pausePlugin;
 
 PGPausePlugin* PGPausePlugin::sharedPlugin(){

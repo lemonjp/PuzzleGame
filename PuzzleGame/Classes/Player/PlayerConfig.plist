@@ -6,6 +6,8 @@
 	<string>{63,63}</string>
 	<key>PlayerFileName</key>
 	<string>player.png</string>
+	<key>PlayerFileName2</key>
+	<string>player2.png</string>
 	<key>PlayerPosition</key>
 	<string>{150,100}</string>
 	<key>PlayerTag</key>
@@ -13,6 +15,6 @@
 	<key>PlayerZOrder</key>
 	<string>99</string>
 	<key>PlayerMoveSpeed</key>
-	<string>5.0f</string>
+	<string>3.0f</string>
 </dict>
 </plist>

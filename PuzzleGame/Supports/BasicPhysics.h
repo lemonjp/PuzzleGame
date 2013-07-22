@@ -6,16 +6,28 @@
 //
 //
 
+/*
+    box2d物理插件:
+    
+    该插件形式为单例(不支持多个物理世界）— 可用于模拟地球物理现象  如太空之类的这个还没考虑上
+ 
+    BasicPhysics::sharedPhysics 产生单例
+ 
+    方法有createBody产生刚体 销毁刚体
+ */
+
 #ifndef __PuzzleGame__BasicPhysics__
 #define __PuzzleGame__BasicPhysics__
 
 #include "cocos2d.h"
+#include "cocos-ext.h"
 #include "Box2D.h"
 #include "GLES-Render.h"
 #include "PhysicsSprite.h"
 #include "PlistLoader.h"
 
 using namespace cocos2d;
+using namespace cocos2d::extension;
 
 class BasicPhysics : public CCObject{
 public:
@@ -39,6 +51,8 @@ public:
                     float friction,
                     float restitution,
                     CCSize sprContentSize);
+    //产生旋转关节(自转)
+    void createRevoiuteJoint(b2Body *body,float torque);
     //删除刚体
     void destroyBody(SpriteBody *sprite);
     //绘图
@@ -46,7 +60,9 @@ public:
 private:
     CC_SYNTHESIZE_READONLY(b2World*, world_, World);
     CC_SYNTHESIZE(int, PTM_RATIO, RATIO);
+    b2Body* groundBody;
     GLESDebugDraw *m_debugDraw;
+    ContactListener *contactListener;
     void crateEdgeShape(b2Body* groundBody,b2EdgeShape groundBox);
 };
 

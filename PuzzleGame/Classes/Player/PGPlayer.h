@@ -55,8 +55,14 @@ public:
     /*移动玩家*/
     void playerMoveingInBox2d(PlayerDirection dir);//左边或者右边
     void playerJumpingInBox2d();
+    /*唤醒player*/
+    void awakePlayer();
 private:
     CC_SYNTHESIZE(SpriteBody*, sprite, SpriteBody);
+    //player速度
+    CC_SYNTHESIZE_READONLY(float, speed, Speed);
+    //是否食持续碰撞
+    CC_SYNTHESIZE(bool, isContinueCollde, IsContinueCollde);
     
     PlistLoader *plist;
     
