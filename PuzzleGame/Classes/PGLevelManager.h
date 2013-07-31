@@ -14,7 +14,7 @@
 #include "BasicPhysics.h"
 #include "PGPlayer.h"
 #include "PGGameControl.h"
-
+#include "PGPausePlugin.h"
 #include "PGLevelScene.h"
 #include "PGLevel1Scene.h"
 
@@ -42,11 +42,19 @@ public:
     void contactEnded();
     
 private:
+    //目前是哪个关卡的场景
     PGLevelScene *currentScene;
     CCSize winSize;
     //参考点
     CCPoint referPoint;
+    //玩家起始点(坐标,如果有存储点就改变)
+    CCPoint startPos;
     //游戏主循环
     void gameSchedule();
+    //添加暂停按钮
+    void addPauseButton();
+    void menu_callbackEvent();
+    //调整场景位置
+    void adjustPosition();
 };
 #endif /* defined(__PuzzleGame__PGLevelManager__) */

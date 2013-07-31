@@ -1,13 +1,13 @@
 //
-//  PGLevel1Scene.h
+//  PGLevel2Scene.h
 //  PuzzleGame
 //
-//  Created by 何遵祖 on 13-7-12.
+//  Created by 何遵祖 on 13-7-23.
 //
 //
 
-#ifndef __PuzzleGame__PGLevel1Scene__
-#define __PuzzleGame__PGLevel1Scene__
+#ifndef __PuzzleGame__PGLevel2Scene__
+#define __PuzzleGame__PGLevel2Scene__
 
 #include "cocos2d.h"
 #include "PGElement.h"
@@ -20,10 +20,10 @@
 
 using namespace cocos2d;
 
-class PGLevel1Scene : public PGLevelScene{
+class PGLevel2Scene : public PGLevelScene{
 public:
-    PGLevel1Scene();
-    ~PGLevel1Scene();
+    PGLevel2Scene();
+    ~PGLevel2Scene();
     
     static CCScene* scene();
     virtual bool init();
@@ -36,7 +36,7 @@ public:
     //是否碰到了齿轮
     virtual void isContactGear();
     
-    CREATE_FUNC(PGLevel1Scene);
+    CREATE_FUNC(PGLevel2Scene);
 private:
     //添加背景(背景和地面)
     void addGameBackground(CCLayer* layer,CCPoint pos);
@@ -49,7 +49,7 @@ private:
     //添加齿轮
     void addGameGear(CCLayer* layer);
     //是否player碰撞到了可以移动箱子
-    bool playerisContactBox(PGElement *element,int playerDir);
+    bool playerisContactBox(PGElement *element);
 };
 
-#endif /* defined(__PuzzleGame__PGLevel1Scene__) */
+#endif /* defined(__PuzzleGame__PGLevel2Scene__) */

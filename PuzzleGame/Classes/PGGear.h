@@ -35,6 +35,7 @@ public:
     virtual CCPoint getElementPosition();
 private:
     CC_SYNTHESIZE(SpriteBody*, gearBody, GearBody);
+    CC_SYNTHESIZE(float, angle, Angle);//旋转角度
 };
 
 #endif /* defined(__PuzzleGame__PGGear__) */

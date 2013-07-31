@@ -24,6 +24,8 @@ public:
     void addBoxToScreen(CCLayer* layer,CCPoint position);
     //移除箱子
     void removeBoxFromScreen(CCLayer *layer);
+    //检测是否有精灵碰撞到箱子
+    bool spriteIsContactBox(CCSprite *sprite);
     //移动
     virtual void moveElement(float speedX,float speedY);
     //获得元素位置

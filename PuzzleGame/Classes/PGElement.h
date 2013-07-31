@@ -15,6 +15,11 @@
 
 #include "cocos2d.h"
 
+typedef enum ElementType{
+    e_surface = -1,
+    e_inside = 1,
+}ElementType;
+
 using namespace cocos2d;
 
 class PGElement : public CCObject{
@@ -25,7 +30,7 @@ public:
     virtual void moveElement(float speedX,float speedY)=0;
     virtual CCPoint getElementPosition()=0;
 private:
-    
+    CC_SYNTHESIZE(ElementType, e_Type, Type);
 };
 
 #endif /* defined(__PuzzleGame__PGElement__) */

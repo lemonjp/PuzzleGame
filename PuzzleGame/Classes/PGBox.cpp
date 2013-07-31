@@ -15,7 +15,7 @@ PGBox::~PGBox(){
 
 void PGBox::addBoxToScreen(CCLayer *layer, CCPoint point){
     boxBody=new SpriteBody();
-    boxBody->initWithFile("gameProp1.png", CCRectMake(13, 130, 34, 38));
+    boxBody->initWithFile("box.png");
     boxBody->setPosition(point);
     boxBody->autorelease();
     layer->addChild(boxBody);
@@ -23,8 +23,8 @@ void PGBox::addBoxToScreen(CCLayer *layer, CCPoint point){
     BasicPhysics::sharedPhysics()->createBody(boxBody,
                                               boxBody->getPosition(),
                                               b2_dynamicBody,
-                                              0.8f, 0.5f, 0.0f,
-                                              CCSizeMake(33, 37));
+                                              0.0f, 1.0f, 0.0f,
+                                              boxBody->getContentSize());
 }
 
 void PGBox::removeBoxFromScreen(CCLayer *layer){
@@ -34,6 +34,22 @@ void PGBox::removeBoxFromScreen(CCLayer *layer){
     }
     BasicPhysics::sharedPhysics()->destroyBody(boxBody);
     layer->removeChild(boxBody, true);
+}
+
+
+bool PGBox::spriteIsContactBox(CCSprite* sprite){
+    CCRect spriteRect=CCRectMake(sprite->getPosition().x-sprite->getContentSize().width/2,
+                                 sprite->getPosition().y-sprite->getContentSize().height/2,
+                                 sprite->getContentSize().width,
+                                 sprite->getContentSize().height);
+    CCRect boxRect=CCRectMake(boxBody->getPosition().x-boxBody->getContentSize().width/2,
+                              boxBody->getPosition().y-boxBody->getContentSize().height/2,
+                              boxBody->getContentSize().width,
+                              boxBody->getContentSize().height);
+    if (boxRect.intersectsRect(spriteRect)) {
+        return true;
+    }
+    return false;
 }
 
 void PGBox::moveElement(float speedX, float speedY){

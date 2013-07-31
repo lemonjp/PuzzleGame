@@ -55,6 +55,8 @@ private:
     bool isFristCreate;//是否为第一次产生
     PlistLoader *plist;//该插件的配置文件
     
+    CCLayer *glayer;
+    
     /*产生背景*/
     void createBackground(CCLayer *layer);
     void createPluginButton(CCLayer *layer);

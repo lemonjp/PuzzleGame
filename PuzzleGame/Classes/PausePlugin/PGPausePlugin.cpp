@@ -14,6 +14,7 @@ PGPausePlugin* PGPausePlugin::sharedPlugin(){
     if (!pausePlugin) {
         pausePlugin=new PGPausePlugin();
         pausePlugin->autorelease();
+        pausePlugin->retain();
     }
     return pausePlugin;
 }
@@ -24,6 +25,7 @@ PGPausePlugin::PGPausePlugin(){
     size=CCDirector::sharedDirector()->getWinSize();
     //获得配置文件
     plist=PlistLoader::initWithPlistFile("PGPausePluginConfig.plist");
+    plist->retain();
 }
 
 PGPausePlugin::~PGPausePlugin(){
@@ -32,6 +34,7 @@ PGPausePlugin::~PGPausePlugin(){
 void PGPausePlugin::end(){
     CC_SAFE_DELETE(notificationType);
     CC_SAFE_DELETE(plist);
+    CC_SAFE_RELEASE(pausePlugin);
 }
 
 #pragma mark -
@@ -40,10 +43,12 @@ void PGPausePlugin::createPlugin(CCLayer* layer){
     if (isFristCreate) return;
     isFristCreate=true;
     
+    //绑定层
+    this->glayer=layer;
     //产生背景
-    this->createBackground(layer);
+    this->createBackground(glayer);
     //产生插件按钮
-    this->createPluginButton(layer);
+    this->createPluginButton(glayer);
     //游戏暂停
     layer->pauseSchedulerAndActions();
 }
@@ -51,10 +56,11 @@ void PGPausePlugin::createPlugin(CCLayer* layer){
 void PGPausePlugin::deletePlugin(CCLayer* layer){
     /*已经删除.标记不是第一次产生*/
     if (isFristCreate) isFristCreate=false;
+    PlistLoader *tempPlist=PlistLoader::initWithPlistFile("PGPausePluginConfig.plist");
     //get speed String
-    CCString *speedStr=dynamic_cast<CCString*>(plist->getObjectFromFileKey("MoveSpeed"));
+    CCString *speedStr=dynamic_cast<CCString*>(tempPlist->getObjectFromFileKey("MoveSpeed"));
     //get pause plugin tag
-    CCString *tag=dynamic_cast<CCString*>(plist->getObjectFromFileKey("PausePluginTag"));
+    CCString *tag=dynamic_cast<CCString*>(tempPlist->getObjectFromFileKey("PausePluginTag"));
     CCSprite *pauseBg=dynamic_cast<CCSprite*>(layer->getChildByTag(tag->intValue()));
     pauseBg->runAction(CCMoveTo::create(speedStr->intValue(), ccp(size.width+pauseBg->getContentSize().width/2,size.height/2)));
     CCMenu *menu=dynamic_cast<CCMenu*>(layer->getChildByTag(tag->intValue()-1));
@@ -66,7 +72,8 @@ void PGPausePlugin::deletePlugin(CCLayer* layer){
 void PGPausePlugin::delete_funcND(CCObject* object, void *data){
     CCLayer* layer=(CCLayer*)(data);
     //get pause plugin tag
-    CCString *tag=dynamic_cast<CCString*>(plist->getObjectFromFileKey("PausePluginTag"));
+    PlistLoader *tempPlist=PlistLoader::initWithPlistFile("PGPausePluginConfig.plist");
+    CCString *tag=dynamic_cast<CCString*>(tempPlist->getObjectFromFileKey("PausePluginTag"));
     layer->removeChildByTag(tag->intValue(), true);
     layer->removeChildByTag(tag->intValue()-1, true);
     layer->resumeSchedulerAndActions();
@@ -142,7 +149,7 @@ CCMenuItemToggle* PGPausePlugin::createBgMusicBtn(CCArray* sprites){
 }
 
 void PGPausePlugin::musicSetting(CCObject* sender){
-    CCNotificationCenter::sharedNotificationCenter()->postNotification(notificationType->getMusic(),this);
+ 
 }
 
 #pragma mark effect toggle
@@ -162,7 +169,7 @@ CCMenuItemToggle* PGPausePlugin::createEffectBtn(CCArray *sprites){
 }
 
 void PGPausePlugin::effectSetting(CCObject* sender){
-    CCNotificationCenter::sharedNotificationCenter()->postNotification(notificationType->getEffect(),this);
+    
 }
 
 #pragma mark home button 
@@ -175,7 +182,8 @@ CCMenuItemSprite* PGPausePlugin::createHomeBtn(CCArray* sprites){
 }
 
 void PGPausePlugin::homeSetting(CCObject* sender){
-//    CCNotificationCenter::sharedNotificationCenter()->postNotification(notificationType->getHome(),this);
+    //跳进主场景
+    
 }
 
 #pragma mark back button
@@ -188,5 +196,5 @@ CCMenuItemSprite* PGPausePlugin::createBackBtn(CCArray* sprites){
 }
 
 void PGPausePlugin::backFunc(CCObject* sender){
-    CCNotificationCenter::sharedNotificationCenter()->postNotification(notificationType->getBack(),this);
+    this->deletePlugin(glayer);
 }

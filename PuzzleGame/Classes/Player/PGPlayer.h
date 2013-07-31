@@ -29,10 +29,13 @@
 #include "PlistLoader.h"
 #include "BasicPhysics.h"
 #include "PhysicsSprite.h"
+#include "PGActorCartoon.h"
 
 typedef enum PlayerDirection{
+    p_static = 0,
     p_left = -1,
     p_right = 1,
+    p_jump = 2
 }PlayerDirection;
 
 using namespace cocos2d;
@@ -48,21 +51,19 @@ public:
     void createPlayer(CCLayer* layer);
     /*删除游戏玩家*/
     void deletePlayer(CCLayer* layer);
-    /*播放玩家动画*/
-    void playMoveAnim(CCSprite* sprite);
-    void playJumpAnim(CCSprite* sprite);
-    void playPushAnim(CCSprite* sprite);
     /*移动玩家*/
     void playerMoveingInBox2d(PlayerDirection dir);//左边或者右边
     void playerJumpingInBox2d();
-    /*唤醒player*/
-    void awakePlayer();
+    /*调整玩家方向*/
+    void adjustPlayerAnimation(PlayerDirection dir);
 private:
     CC_SYNTHESIZE(SpriteBody*, sprite, SpriteBody);
     //player速度
-    CC_SYNTHESIZE_READONLY(float, speed, Speed);
+    CC_SYNTHESIZE(float, speed, Speed);
     //是否食持续碰撞
     CC_SYNTHESIZE(bool, isContinueCollde, IsContinueCollde);
+    //玩家动画
+    CC_SYNTHESIZE(Bz_ActorCartoon, animation, Animation);
     
     PlistLoader *plist;
     
@@ -70,9 +71,7 @@ private:
     CCAnimate *jumpAnim;
     CCAnimate *pushAnim;
     
-    void initWithMoveAnimation(CCTexture2D *playerTex);
-    void initWithJumpAnimation(CCTexture2D *playerTex);
-    void initWithPushAnimation(CCTexture2D *playerTex);
+    PlayerDirection oldDir;
     
     void addPlayerBodyToScreen(CCLayer* layer,CCTexture2D *playerTex);
 };

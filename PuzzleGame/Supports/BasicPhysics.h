@@ -51,8 +51,14 @@ public:
                     float friction,
                     float restitution,
                     CCSize sprContentSize);
-    //产生旋转关节(自转)
-    void createRevoiuteJoint(b2Body *body,float torque);
+    void createBodyInCircle(SpriteBody *sprite,
+                            CCPoint position,
+                            b2BodyType type,
+                            float density,
+                            float friction,
+                            float restitution,
+                            float radius);
+    
     //删除刚体
     void destroyBody(SpriteBody *sprite);
     //绘图

@@ -117,17 +117,19 @@ void BasicPhysics::crateEdgeShape(b2Body *groundBody, b2EdgeShape groundBox){
     
     //产生四边的碰撞墙壁
     //底部
-    groundBox.Set(b2Vec2(0,(s.height-edgeHeight)/PTM_RATIO),
-                  b2Vec2(edgeWidth/PTM_RATIO,(s.height-edgeHeight)/PTM_RATIO));
+    groundBox.Set(b2Vec2(-edgeWidth/PTM_RATIO,(s.height-edgeHeight)/PTM_RATIO),
+                  b2Vec2(edgeWidth*2/PTM_RATIO,(s.height-edgeHeight)/PTM_RATIO));
     groundBody->CreateFixture(&groundBox,0);
     //顶部
-    groundBox.Set(b2Vec2(0,s.height/PTM_RATIO), b2Vec2(edgeWidth/PTM_RATIO,s.height/PTM_RATIO));
+    groundBox.Set(b2Vec2(-edgeHeight/PTM_RATIO,s.height/PTM_RATIO),
+                  b2Vec2(edgeWidth*2/PTM_RATIO,s.height/PTM_RATIO));
     groundBody->CreateFixture(&groundBox,0);
     //左边
-    groundBox.Set(b2Vec2(0,s.height/PTM_RATIO), b2Vec2(0,0));
+    groundBox.Set(b2Vec2(-edgeWidth/PTM_RATIO,s.height/PTM_RATIO),
+                  b2Vec2(-edgeWidth/PTM_RATIO,0));
     groundBody->CreateFixture(&groundBox,0);
     //右边
-    groundBox.Set(b2Vec2(edgeWidth/PTM_RATIO,s.height/PTM_RATIO), b2Vec2(edgeWidth/PTM_RATIO,0));
+    groundBox.Set(b2Vec2(edgeWidth*2/PTM_RATIO,s.height/PTM_RATIO), b2Vec2(edgeWidth*2/PTM_RATIO,0));
     groundBody->CreateFixture(&groundBox,0);
 }
 
@@ -162,35 +164,38 @@ void BasicPhysics::createBody(SpriteBody *sprite,
     sprite->setPhysicsBody(body);
 }
 
+void BasicPhysics::createBodyInCircle(SpriteBody *sprite,
+                                      CCPoint position,
+                                      b2BodyType type,
+                                      float density,
+                                      float friction,
+                                      float restitution,
+                                      float radius){
+    b2BodyDef bodyDef;
+    bodyDef.type=type;
+    bodyDef.position.Set(position.x/PTM_RATIO, position.y/PTM_RATIO);
+    bodyDef.userData=sprite;
+    
+    //在物理世界中产生body
+    b2Body *body=world_->CreateBody(&bodyDef);
+    
+    //产生一个circleBody
+    b2CircleShape dynamicCircle;
+    dynamicCircle.m_radius=radius;
+    
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape=&dynamicCircle;
+    fixtureDef.density=density;//密度
+    fixtureDef.friction=friction;//设置摩擦
+    fixtureDef.restitution=restitution;//恢复
+    
+    body->CreateFixture(&fixtureDef);
+    
+    sprite->setPhysicsBody(body);
+}
 void BasicPhysics::destroyBody(SpriteBody *sprite){
     b2Body *spriteBody=sprite->getPhysicsBody();
     world_->DestroyBody(spriteBody);
-}
-
-void BasicPhysics::createRevoiuteJoint(b2Body *body,float torque){
-    if (body->GetUserData()==NULL) {
-        CCLOG("ERROR:body is null!");
-        return;
-    }
-    CCSprite *bodySprite=(CCSprite*)(body->GetUserData());
-    //自己产生一个刚体
-    b2BodyDef bodyDef;
-    bodyDef.type=b2_staticBody;
-    bodyDef.position.Set(bodySprite->getPosition().x/PTM_RATIO, bodySprite->getPosition().y/PTM_RATIO);
-    
-    //在物理世界中产生body
-    b2Body *tempbody=world_->CreateBody(&bodyDef);
-    
-    b2RevoluteJointDef jointDef;
-    jointDef.Initialize(tempbody,body,
-                        b2Vec2(bodySprite->getPosition().x/PTM_RATIO,bodySprite->getPosition().y/PTM_RATIO));
-    //如果扭力不为0，则添加扭力
-    if (torque!=0) {
-        jointDef.enableMotor=true;
-        jointDef.motorSpeed=M_PI*2;
-        jointDef.maxMotorTorque=torque;
-    }
-    world_->CreateJoint(&jointDef);
 }
 
 void BasicPhysics::draw(){

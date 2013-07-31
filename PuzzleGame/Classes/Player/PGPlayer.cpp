@@ -34,15 +34,8 @@ PGPlayer::~PGPlayer(){
 
 void PGPlayer::createPlayer(CCLayer* layer){
     CCString *file=dynamic_cast<CCString*>(plist->getObjectFromFileKey("PlayerFileName"));
-    CCString *file2=dynamic_cast<CCString*>(plist->getObjectFromFileKey("PlayerFileName2"));
     //用纹理缓存（资源池）加载纹理
     CCTexture2D *playerTex=CCTextureCache::sharedTextureCache()->addImage(file->getCString());
-    CCTexture2D *playerTex2=CCTextureCache::sharedTextureCache()->addImage(file2->getCString());
-    
-    //初始化动画
-    this->initWithMoveAnimation(playerTex);
-    this->initWithJumpAnimation(playerTex);
-    this->initWithPushAnimation(playerTex);
     
     //添加玩家刚体
     this->addPlayerBodyToScreen(layer, playerTex);
@@ -50,10 +43,8 @@ void PGPlayer::createPlayer(CCLayer* layer){
 
 void PGPlayer::deletePlayer(CCLayer* layer){
     CCString *file=dynamic_cast<CCString*>(plist->getObjectFromFileKey("PlayerFileName"));
-    CCString *file2=dynamic_cast<CCString*>(plist->getObjectFromFileKey("PlayerFileName2"));
     //删除纹理
     CCTextureCache::sharedTextureCache()->removeTextureForKey(file->getCString());
-    CCTextureCache::sharedTextureCache()->removeTextureForKey(file2->getCString());
 }
 
 void PGPlayer::addPlayerBodyToScreen(CCLayer* layer,CCTexture2D *playerTex){
@@ -74,102 +65,55 @@ void PGPlayer::addPlayerBodyToScreen(CCLayer* layer,CCTexture2D *playerTex){
     CCString *playerZOrder=dynamic_cast<CCString*>(plist->getObjectFromFileKey("PlayerZOrder"));
 
     layer->addChild(sprite,playerZOrder->intValue(),playerTag->intValue());
-    //运行player动画
-    this->playMoveAnim(sprite);
+    
+    //玩家动画类
+    animation.createWithActorPlistFileName("Actor");
+    animation.actStanding(sprite, 0.5, -1);
+    oldDir=p_static;
+    
     //生成刚体
     BasicPhysics::sharedPhysics()->createBody(sprite,
                                               sprite->getPosition() ,
                                               b2_dynamicBody,
                                               0.8f,0.5f,0.0f,
-                                              CCSizeMake(35, 50));
+                                              CCSizeMake(45, 80));
     //设置固定旋转
     sprite->setFixedRotation(true);
 }
 
-void PGPlayer::playerMoveingInBox2d(PlayerDirection dir){
-    float posX=sprite->getPosition().x;
-    //CCLOG("%f",sprite->getLinearImpulse().y);
+void PGPlayer::adjustPlayerAnimation(PlayerDirection dir){
+    CCLOG("%d-%d",oldDir,dir);
+    if (dir>0&&oldDir!=dir) {//右边且不是同一个方向
+        animation.actRightMoving(sprite, 0.5, -1);
+    }else if(dir<0&&oldDir!=dir){//左边
+        animation.actLeftMoving(sprite, 0.5, -1);
+    }
+    oldDir=dir;
+}
 
-    int PTM_RATIO=BasicPhysics::sharedPhysics()->getRATIO();
+void PGPlayer::playerMoveingInBox2d(PlayerDirection dir){
     
+    this->adjustPlayerAnimation(dir);
+    
+    float posX=sprite->getPosition().x;
+    int PTM_RATIO=BasicPhysics::sharedPhysics()->getRATIO();
     sprite->setTransform(b2Vec2((posX+dir*speed)/PTM_RATIO,
-                                sprite->getPosition().y/PTM_RATIO), 0);
+                                sprite->getPosition().y/PTM_RATIO),0);
 }
 
 void PGPlayer::playerJumpingInBox2d(){
     if (!(sprite->getLinearImpulse().y>=-2.0f&&this->getIsContinueCollde())){
         return;
     }
+    //判断player目前方向
+    if (oldDir==p_right) {
+        animation.actLeftJumpping(sprite, -0.5f, -1);
+    }else if(oldDir==p_left){
+        animation.actLeftJumpping(sprite, -0.5f, -1);
+    }
+    oldDir=p_jump;
     int PTM_RATIO=BasicPhysics::sharedPhysics()->getRATIO();
-    sprite->applyLinearImpulse(b2Vec2(0,8.0f),
+    sprite->applyLinearImpulse(b2Vec2(0,8.5f),
                                b2Vec2(sprite->getPosition().x/PTM_RATIO,
                                       sprite->getPosition().y/PTM_RATIO));
-}
-
-void PGPlayer::playMoveAnim(CCSprite* sprite){
-    sprite->stopAllActions();
-    sprite->runAction(CCRepeatForever::create(moveAnim));
-}
-
-void PGPlayer::playJumpAnim(CCSprite* sprite){
-    sprite->stopAllActions();
-    sprite->runAction(CCRepeatForever::create(jumpAnim));
-}
-
-void PGPlayer::playPushAnim(CCSprite* sprite){
-    sprite->stopAllActions();
-    sprite->runAction(CCRepeatForever::create(pushAnim));
-}
-
-void PGPlayer::initWithMoveAnimation(CCTexture2D *playerTex){
-    CCString *imageSizeStr=dynamic_cast<CCString*>(plist->getObjectFromFileKey("ImagePreSize"));
-    CCSize imageSize=CCSizeFromString(imageSizeStr->getCString());
-    //创建行走动画
-    CCArray *animFrames=CCArray::create();
-    for (int i=0; i<4; i++) {
-        CCSpriteFrame *frame=CCSpriteFrame::createWithTexture(playerTex, CCRectMake(imageSize.width*i, imageSize.height, imageSize.width, imageSize.height));
-        animFrames->addObject(frame);
-    }
-    //用侦序列创建动画
-    CCAnimation *animation=CCAnimation::createWithSpriteFrames(animFrames);
-    //创建Animate播放动画
-    animation->setDelayPerUnit(0.3f);
-    moveAnim=CCAnimate::create(animation);
-}
-
-void PGPlayer::initWithJumpAnimation(CCTexture2D *playerTex){
-    CCString *imageSizeStr=dynamic_cast<CCString*>(plist->getObjectFromFileKey("ImagePreSize"));
-    CCSize imageSize=CCSizeFromString(imageSizeStr->getCString());
-    //创建跳跃动画
-    CCArray *animFrames=CCArray::create();
-    for (int i=0; i<4; i++) {
-        CCSpriteFrame *frame=CCSpriteFrame::createWithTexture(playerTex,CCRectMake(imageSize.width*i, imageSize.height*2,imageSize.width, imageSize.height));
-        animFrames->addObject(frame);
-    }
-    //用侦序列创建动画
-    CCAnimation *animation=CCAnimation::createWithSpriteFrames(animFrames);
-    //创建Animate播放动画
-    animation->setDelayPerUnit(0.3f);
-    jumpAnim=CCAnimate::create(animation);
-}
-
-void PGPlayer::initWithPushAnimation(CCTexture2D *playerTex){
-    //创建推东西的动画
-    CCString *imageSizeStr=dynamic_cast<CCString*>(plist->getObjectFromFileKey("ImagePreSize"));
-    CCSize imageSize=CCSizeFromString(imageSizeStr->getCString());
-    //创建行走动画
-    CCArray *animFrames=CCArray::create();
-    for (int i=0; i<4; i++) {
-        CCSpriteFrame *frame=CCSpriteFrame::createWithTexture(playerTex, CCRectMake(imageSize.width*i, imageSize.height*3, imageSize.width, imageSize.height));
-        animFrames->addObject(frame);
-    }
-    //用侦序列创建动画
-    CCAnimation *animation=CCAnimation::createWithSpriteFrames(animFrames);
-    //创建Animate播放动画
-    animation->setDelayPerUnit(0.3f);
-    pushAnim=CCAnimate::create(animation);
-}
-
-void PGPlayer::awakePlayer(){
-    sprite->awakeBody();
 }

@@ -27,6 +27,7 @@ bool PGLevelManager::init(){
         return false;
     }
     
+    //获得窗口大小
     winSize=CCDirector::sharedDirector()->getWinSize();
     
     //添加关卡背景和元素的层
@@ -38,10 +39,15 @@ bool PGLevelManager::init(){
     //添加玩家
     PGPlayer::sharedPlayer()->createPlayer(this);
     referPoint=PGPlayer::sharedPlayer()->getSpriteBody()->getPosition();
-
+    //初始化开始坐标
+    startPos=referPoint;
+    
     //游戏控制层
     gameControl *control=gameControl::create();
-    this->addChild(control,200);
+    this->addChild(control,90);
+    
+    //添加暂停按钮
+    this->addPauseButton();
     
     //添加观察者
     ADD_OBSERVER(moveLeft, PGLevelManager::playerMoveLeft);
@@ -69,9 +75,38 @@ void PGLevelManager::draw(){
     BasicPhysics::sharedPhysics()->draw();
 }
 
+void PGLevelManager::addPauseButton(){
+    CCSize size=CCDirector::sharedDirector()->getWinSize();
+    CCSprite *btn1=CCSprite::create("buttons.png",CCRectMake(80*2, 0, 80, 75));
+    btn1->setScale(0.8f);
+    CCSprite *btn2=CCSprite::create("buttons.png",CCRectMake(80*3, 0, 85, 75));
+    btn2->setScale(0.8f);
+    CCMenuItemSprite *pauseBtn=CCMenuItemSprite::create(btn1, btn2,
+                                                        this,
+                                                        menu_selector(PGLevelManager::menu_callbackEvent));
+    CCMenu *menu=CCMenu::create(pauseBtn,NULL);
+    menu->setPosition(ccp(size.width-40,size.height-30));
+    this->addChild(menu,80);
+}
+
+void PGLevelManager::menu_callbackEvent(){
+    PGPausePlugin::sharedPlugin()->createPlugin(this);
+}
+
 #pragma mark-
 #pragma mark player moving method
+void PGLevelManager::adjustPosition(){
+    //box2d世界中玩家实际位置(调整位置)
+    float realPlayerPos=PGPlayer::sharedPlayer()->getSpriteBody()->getPhysicsBody()->GetTransform().p.x*BasicPhysics::sharedPhysics()->getRATIO();
+    if (realPlayerPos<=Scene_Move_MIN_Width&&referPoint.x<=Scene_Move_MIN_Width) {
+        referPoint.x=realPlayerPos;
+    }else if(referPoint.x>=(Scene_Move_MAX_Width-Scene_Move_MIN_Width+10)){
+        referPoint.x=realPlayerPos+(Scene_Move_MAX_Width-Scene_Move_MIN_Width*2);
+    }
+}
+
 void PGLevelManager::playerMoveLeft(){
+    //this->adjustPosition();
     float playerSpeed=PGPlayer::sharedPlayer()->getSpeed();
     if (referPoint.x<Scene_Move_MIN_Width||
         referPoint.x>(Scene_Move_MAX_Width-Scene_Move_MIN_Width)) {
@@ -80,6 +115,7 @@ void PGLevelManager::playerMoveLeft(){
         PGPlayer::sharedPlayer()->playerMoveingInBox2d(p_left);
         return;
     }else{
+        PGPlayer::sharedPlayer()->adjustPlayerAnimation(p_left);
         referPoint=ccpAdd(referPoint, ccp(-playerSpeed,0));
         if(!currentScene->moveLevelScene(playerSpeed, 0)){//如果没有移动就复位
             referPoint=ccpAdd(referPoint,ccp(playerSpeed,0));
@@ -88,14 +124,16 @@ void PGLevelManager::playerMoveLeft(){
 }
 
 void PGLevelManager::playerMoveRight(){
+    this->adjustPosition();
     float playerSpeed=PGPlayer::sharedPlayer()->getSpeed();
-    if (referPoint.x<Scene_Move_MIN_Width||
-        referPoint.x>(Scene_Move_MAX_Width-Scene_Move_MIN_Width)) {
+    if (referPoint.x<=Scene_Move_MIN_Width||
+        referPoint.x>=(Scene_Move_MAX_Width-Scene_Move_MIN_Width)) {
         if (referPoint.x>=Scene_Move_MAX_Width) return;
         referPoint=ccpAdd(referPoint, ccp(playerSpeed,0));
         PGPlayer::sharedPlayer()->playerMoveingInBox2d(p_right);
         return;
     }else{
+        PGPlayer::sharedPlayer()->adjustPlayerAnimation(p_right);
         referPoint=ccpAdd(referPoint,ccp(playerSpeed,0));
         if(!currentScene->moveLevelScene(-playerSpeed, 0)){//如果没有移动就复位
             referPoint=ccpAdd(referPoint,ccp(-playerSpeed,0));
